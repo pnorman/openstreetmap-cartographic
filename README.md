@@ -28,9 +28,9 @@ Install Tilekiln. Generate tiles with ``tilekiln-generate area -d gis vector.yam
 
 You can't generate for just a bounding box until [it is implemented in tilekiln](https://github.com/pnorman/tilekiln/issues/8) so it helps to have database CPU to throw at this.
 
-Make a TileJSON with information about the tiles with ``tilekiln-tilejson vector.yaml "http://localhost:8000/{id}/{z}/{x}/{y}.mvt" > tiles/dev.json
+Make a TileJSON with information about the tiles with ``tilekiln-tilejson vector.yaml "http://localhost:8000/{id}/{z}/{x}/{y}.mvt" > tiles/dev.json``
 
-Serve up the tiles with ``python3 -m http.server -d tiles`` and you'll get a tilejson at ``http://localhost:8000/dev.json``. Load the stylesheet into something like [Fresco](https://fresco.gospatial.org/) for a better editing experience.
+Serve up the tiles with ``./serve tiles`` and you'll get a tilejson at ``http://localhost:8000/dev.json``. Load the stylesheet into something like [Fresco](https://fresco.gospatial.org/) for a better editing experience.
 
 If you get fancy and aren't loading tiles from localhost, make sure to set your CORS headers and update the URLs.
 

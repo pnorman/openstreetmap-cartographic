@@ -1,0 +1,40 @@
+SELECT
+    ST_AsMVTGeom(ST_PointOnSurface(way), {{bbox}}, {{extent}}) AS way,
+    osm_id,
+    name,
+    population,
+    capital
+  FROM
+  (SELECT
+      way,
+      osm_id,
+      name,
+      place,
+      -- Turn population into an integer for filtering
+      CASE
+        WHEN (tags->'population' ~ '^[0-9]{1,8}$') THEN (tags->'population')::INTEGER
+        WHEN place = 'city' THEN 100000
+        WHEN place = 'town' THEN 1000
+      END AS population,
+      tags @> 'capital=>yes' AS capital
+    FROM planet_osm_point) AS places
+  WHERE way && {{bbox}}
+    AND name IS NOT NULL
+{% if zoom <= 4 %}
+    AND (place IN ('city')
+      AND population > 600000
+      OR capital AND place IN ('city', 'town', 'village', 'hamlet'))
+{% elif zoom <= 5 %}
+    AND (place IN ('city')
+      AND population > 300000
+      OR capital AND place IN ('city', 'town', 'village', 'hamlet'))
+{% elif zoom <= 6 %}
+    AND (place IN ('city', 'town')
+      AND population > 200000
+      OR capital AND place IN ('city', 'town', 'village', 'hamlet'))
+{% elif zoom <= 7 %}
+    AND (place IN ('city', 'town')
+      OR capital AND place IN ('city', 'town', 'village', 'hamlet'))
+{% else %}
+    AND place IN ('city', 'town', 'village', 'hamlet')
+{% endif %}
