@@ -14,9 +14,19 @@ vector_layers:
     geometry: [ polygon ]
     sql:
       - minzoom: 0
-        maxzoom: 6
+        maxzoom: 7
         extent: 2048
         file: sql/water.sql.jinja2
+  water-lines:
+    fields:
+      osm_id: OpenStreetMap ID of the feature
+      waterway: Type of waterway
+    description: Rivers, streams, and other waterways
+    geometry: [ linestring ]
+    sql:
+      - minzoom: 7
+        maxzoom: 7
+        file: sql/water-lines.sql.jinja2
   admin-names:
     fields:
       osm_id: OpenStreetMap ID of the feature
@@ -26,7 +36,7 @@ vector_layers:
     geometry: [ point ]
     sql:
       - minzoom: 3
-        maxzoom: 6
+        maxzoom: 7
         file: sql/admin-names.sql.jinja2
   place-names:
     fields:
@@ -38,17 +48,27 @@ vector_layers:
     geometry: [ point ]
     sql:
       - minzoom: 4
-        maxzoom: 6
+        maxzoom: 7
         file: sql/place-names.sql.jinja2
   transportation:
     fields:
       osm_id: OpenStreetMap ID of the feature
-      name: Name of road,
+      name: Name of road
       highway: Class of road
     description: Transportation features
     geometry: [ line ]
     sql:
       - minzoom: 5
-        maxzoom: 6
+        maxzoom: 7
         extent: 4096
         file: sql/transportation.sql.jinja2
+  ferry-routes:
+    fields:
+      osm_id: OpenStreetMap ID of the feature
+    description: Ferry routes
+    geometry: [ line ]
+    sql:
+      - minzoom: 7
+        maxzoom: 7
+        extent: 4096
+        file: sql/ferry-routes.sql.jinja2

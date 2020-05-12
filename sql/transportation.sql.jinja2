@@ -1,14 +1,13 @@
 SELECT
-    ST_AsMVTGeom(way, {{bbox}}, {{extent}}) AS way,
-    osm_id,
-    name,
+    ST_AsMVTGeom((ST_Dump(ST_LineMerge(ST_Collect(way)))).geom, {{bbox}}, {{extent}}) AS way,
     highway
   FROM planet_osm_roads
   WHERE way && {{bbox}}
-{% if zoom <= 7 %}
+{% if zoom <= 6 %}
     AND highway IN ('motorway', 'trunk')
 {% elif zoom <= 8 %}
     AND highway IN ('motorway', 'trunk', 'primary')
 {% else %}
     AND highway IN ('motorway', 'trunk', 'primary', 'secondary')
 {% endif %}
+  GROUP BY highway

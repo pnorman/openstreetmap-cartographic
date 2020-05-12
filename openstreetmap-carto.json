@@ -1,115 +1,153 @@
 {
-    "name": "OpenStreetMap Carto Client",
-    "id": "72328c7d-c3ec-45e5-aa71-114b3c400c81",
-    "version": 8,
-    "sources": {
-      "vector": {
-        "type": "vector",
-        "url": "http://localhost:8080/dev.json"
+  "name": "OpenStreetMap Carto Client",
+  "id": "72328c7d-c3ec-45e5-aa71-114b3c400c81",
+  "version": 8,
+  "sources": {
+    "vector": {
+      "type": "vector",
+      "url": "http://localhost:8080/dev.json"
+    }
+  },
+  "glyphs": "https://fonts.openmaptiles.org/{fontstack}/{range}.pbf",
+  "layers": [
+    {
+      "id": "land",
+      "type": "background",
+      "paint": {
+        "background-color": "#f2efe9"
       }
     },
-    "glyphs": "https://fonts.openmaptiles.org/{fontstack}/{range}.pbf",
-    "layers": [
-      {
-        "id": "land",
-        "type": "background",
-        "paint": {
-          "background-color": "#f2efe9"
-        }
-      },
-      {
-        "id": "water",
-        "source": "vector",
-        "source-layer": "water",
-        "type": "fill",
-        "paint": {
-          "fill-color": "#aad3df",
-          "fill-opacity": 1
-        }
-      },
-      {
-        "id": "transportation-halo",
-        "source": "vector",
-        "source-layer": "transportation",
-        "type": "line",
-        "paint": {
-          "line-color": "rgba(255,255,255,0.4)",
-          "line-width": 1
-        }
-      },
-      {
-        "id": "transportation-fill",
-        "source": "vector",
-        "source-layer": "transportation",
-        "type": "line",
-        "paint": {
-          "line-color": [
-            "match",
-            [
-              "get",
-              "highway"
-            ],
-            "motorway",
-            "#e66e89",
-            "trunk",
-            "#f6967a",
-            "purple"
+    {
+      "id": "water",
+      "source": "vector",
+      "source-layer": "water",
+      "type": "fill",
+      "paint": {
+        "fill-color": "#aad3df",
+        "fill-opacity": 1
+      }
+    },
+    {
+      "id": "water-lines",
+      "source": "vector",
+      "source-layer": "water-lines",
+      "type": "line",
+      "paint": {
+        "line-color": "#aad3df",
+        "line-width": 0.7
+      }
+    },
+    {
+      "id": "ferry-routes",
+      "source": "vector",
+      "source-layer": "ferry-routes",
+      "type": "line",
+      "paint": {
+        "line-color": "#6666ff",
+        "line-width": 0.4,
+        "line-dasharray": [
+          10,
+          10
+        ]
+      }
+    },
+    {
+      "id": "transportation-halo",
+      "source": "vector",
+      "source-layer": "transportation",
+      "type": "line",
+      "paint": {
+        "line-color": "rgba(255,255,255,0.4)",
+        "line-width": 1
+      }
+    },
+    {
+      "id": "transportation-fill",
+      "source": "vector",
+      "source-layer": "transportation",
+      "type": "line",
+      "paint": {
+        "line-color": [
+          "match",
+          [
+            "get",
+            "highway"
           ],
-          "line-width": 0.5
-        }
+          "motorway",
+          "#e66e89",
+          "trunk",
+          "#f6967a",
+          "primary",
+          "#f4c37d",
+          "secondary",
+          "#e7ed9d",
+          "red"
+        ],
+        "line-width": 0.5
+      }
+    },
+    {
+      "id": "place-names",
+      "source": "vector",
+      "source-layer": "place-names",
+      "type": "symbol",
+      "paint": {
+        "text-color": "#000000",
+        "text-halo-color": "rgba(255,255,255,0.6)",
+        "text-halo-width": 1.5
       },
-      {
-        "layout": {
-          "text-font": [
-            "match",
+      "layout": {
+        "text-font": [
+          "Klokantech Noto Sans Regular"
+        ],
+        "text-field": "{name}",
+        "text-size": 10
+      }
+    },
+    {
+      "layout": {
+        "text-font": [
+          "match",
+          [
+            "get",
+            "admin_level"
+          ],
+          2,
+          [
+            "literal",
             [
-              "get",
-              "admin_level"
-            ],
-            2,
-            [
-              "literal",
-              [
-                "Klokantech Noto Sans Regular"
-              ]
-            ],
-            [
-              "literal",
-              [
-                "Klokantech Noto Sans Italic"
-              ]
+              "Klokantech Noto Sans Regular"
             ]
           ],
-          "text-field": "{name}",
-          "text-size": 10
-        },
-        "type": "symbol",
-        "source": "vector",
-        "id": "country-names",
-        "paint": {
-          "text-color": "#845283",
-          "text-halo-color": "rgba(255,255,255,0.6)",
-          "text-halo-width": 1
-        },
-        "source-layer": "admin-names"
-      },
-      {
-        "id": "place-names",
-        "source": "vector",
-        "source-layer": "place-names",
-        "type": "symbol",
-        "paint": {
-          "text-color": "#000000",
-          "text-halo-color": "rgba(255,255,255,0.6)",
-          "text-halo-width": 1.5
-        },
-        "layout": {
-          "text-font": [
-            "Klokantech Noto Sans Regular"
+          [
+            "literal",
+            [
+              "Klokantech Noto Sans Italic"
+            ]
+          ]
+        ],
+        "text-field": "{name}",
+        "text-size": [
+          "match",
+          [
+            "get",
+            "admin_level"
           ],
-          "text-field": "{name}",
-          "text-size": 11
-        }
-      }
-    ]
-  }
+          2,
+          12,
+          10
+        ],
+        "text-allow-overlap": false
+      },
+      "type": "symbol",
+      "source": "vector",
+      "id": "admin-names",
+      "paint": {
+        "text-color": "#845283",
+        "text-halo-color": "rgba(255,255,255,0.6)",
+        "text-halo-width": 1
+      },
+      "source-layer": "admin-names"
+    }
+  ]
+}

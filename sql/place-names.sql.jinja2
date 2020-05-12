@@ -2,6 +2,7 @@ SELECT
     ST_AsMVTGeom(ST_PointOnSurface(way), {{bbox}}, {{extent}}) AS way,
     osm_id,
     name,
+    place,
     population,
     capital
   FROM

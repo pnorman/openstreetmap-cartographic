@@ -9,8 +9,10 @@ SELECT
     AND name IS NOT NULL
 {% if zoom <= 3 %}
     AND admin_level = '2'
-{% elif zoom <= 5 %}
+{% elif zoom <= 6 %}
     AND admin_level IN ('2', '4')
+{% elif zoom <= 7 %}
+    AND admin_level IN ('2', '4', '5')
 {% elif zoom <= 10 %}
     AND admin_level IN ('2', '4', '6')
 {% else %}
