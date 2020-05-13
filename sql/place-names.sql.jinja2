@@ -39,3 +39,13 @@ SELECT
 {% else %}
     AND place IN ('city', 'town', 'village', 'hamlet')
 {% endif %}
+  ORDER BY
+    capital,
+    CASE place
+      WHEN 'city' THEN 0
+      WHEN 'town' THEN 1
+      WHEN 'village' THEN 2
+      WHEN 'hamlet' THEN 3
+      ELSE 4
+      END,
+      population DESC

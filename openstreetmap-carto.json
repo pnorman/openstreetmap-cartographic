@@ -101,7 +101,8 @@
           "Klokantech Noto Sans Regular"
         ],
         "text-field": "{name}",
-        "text-size": 10
+        "text-size": 10,
+        "text-padding": 20
       }
     },
     {
