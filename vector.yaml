@@ -26,6 +26,7 @@ vector_layers:
     sql:
       - minzoom: 7
         maxzoom: 7
+        extent: 2048
         file: sql/water-lines.sql.jinja2
   admin-names:
     fields:
@@ -35,7 +36,7 @@ vector_layers:
     description: Points for labeling admin areas
     geometry: [ point ]
     sql:
-      - minzoom: 3
+      - minzoom: 2
         maxzoom: 7
         file: sql/admin-names.sql.jinja2
   place-names:
@@ -47,7 +48,7 @@ vector_layers:
     description: Places
     geometry: [ point ]
     sql:
-      - minzoom: 4
+      - minzoom: 3
         maxzoom: 7
         file: sql/place-names.sql.jinja2
   transportation:
@@ -55,6 +56,7 @@ vector_layers:
       osm_id: OpenStreetMap ID of the feature
       name: Name of road
       highway: Class of road
+      railway: Class of rail
     description: Transportation features
     geometry: [ line ]
     sql:

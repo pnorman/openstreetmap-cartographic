@@ -66,7 +66,7 @@
           [
             "zoom"
           ],
-          7,
+          5,
           [
             "match",
             [
@@ -79,7 +79,7 @@
             2.4,
             0
           ],
-          8,
+          6,
           [
             "match",
             [
@@ -92,7 +92,7 @@
             2.6,
             0
           ],
-          9,
+          7,
           [
             "match",
             [
@@ -107,7 +107,7 @@
             3,
             0
           ],
-          10,
+          8,
           [
             "match",
             [
@@ -124,7 +124,7 @@
             3,
             0
           ],
-          11,
+          9,
           [
             "match",
             [
@@ -166,7 +166,16 @@
           "#f4c37d",
           "secondary",
           "#e7ed9d",
-          "red"
+          [
+            "match",
+            [
+              "get",
+              "railway"
+            ],
+            "rail",
+            "#787878",
+            "red"
+          ]
         ],
         "line-width": [
           "interpolate",
@@ -176,7 +185,7 @@
           [
             "zoom"
           ],
-          7,
+          5,
           [
             "match",
             [
@@ -189,7 +198,7 @@
             0.4,
             0
           ],
-          8,
+          6,
           [
             "match",
             [
@@ -202,7 +211,7 @@
             0.6,
             0
           ],
-          9,
+          7,
           [
             "match",
             [
@@ -215,9 +224,18 @@
             1,
             "primary",
             1,
-            0
+            [
+              "match",
+              [
+                "get",
+                "railway"
+              ],
+              "rail",
+              0.5,
+              0
+            ]
           ],
-          10,
+          8,
           [
             "match",
             [
@@ -232,9 +250,18 @@
             1.4,
             "secondary",
             1,
-            0
+            [
+              "match",
+              [
+                "get",
+                "railway"
+              ],
+              "rail",
+              0.8,
+              0
+            ]
           ],
-          11,
+          9,
           [
             "match",
             [
@@ -251,7 +278,16 @@
             1.1,
             "tertiary",
             0.7,
-            0
+            [
+              "match",
+              [
+                "get",
+                "railway"
+              ],
+              "rail",
+              0.82,
+              0
+            ]
           ]
         ]
       }
@@ -271,8 +307,42 @@
           "Klokantech Noto Sans Regular"
         ],
         "text-field": "{name}",
-        "text-size": 10,
-        "text-padding": 20
+        "text-size": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          5,
+          [
+            "match",
+            [
+              "get",
+              "place"
+            ],
+            "city",
+            11,
+            "town",
+            10,
+            0
+          ],
+          8,
+          [
+            "match",
+            [
+              "get",
+              "place"
+            ],
+            "city",
+            13,
+            "town",
+            10,
+            0
+          ]
+        ],
+        "text-padding": 15
       }
     },
     {

@@ -21,19 +21,19 @@ SELECT
     FROM planet_osm_point) AS places
   WHERE way && {{bbox}}
     AND name IS NOT NULL
-{% if zoom <= 4 %}
+{% if zoom <= 3 %}
     AND (place IN ('city')
       AND population > 600000
       OR capital AND place IN ('city', 'town', 'village', 'hamlet'))
-{% elif zoom <= 5 %}
+{% elif zoom <= 4 %}
     AND (place IN ('city')
       AND population > 300000
       OR capital AND place IN ('city', 'town', 'village', 'hamlet'))
-{% elif zoom <= 6 %}
+{% elif zoom <= 5 %}
     AND (place IN ('city', 'town')
       AND population > 200000
       OR capital AND place IN ('city', 'town', 'village', 'hamlet'))
-{% elif zoom <= 7 %}
+{% elif zoom <= 6 %}
     AND (place IN ('city', 'town')
       OR capital AND place IN ('city', 'town', 'village', 'hamlet'))
 {% else %}

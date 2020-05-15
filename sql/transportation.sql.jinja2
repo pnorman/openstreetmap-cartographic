@@ -1,6 +1,7 @@
 SELECT
     ST_AsMVTGeom((ST_Dump(ST_LineMerge(ST_Collect(way)))).geom, {{bbox}}, {{extent}}) AS way,
-    highway
+    highway,
+    NULL AS railway
   FROM planet_osm_roads
   WHERE way && {{bbox}}
 {% if zoom <= 6 %}
@@ -10,4 +11,17 @@ SELECT
 {% else %}
     AND highway IN ('motorway', 'trunk', 'primary', 'secondary')
 {% endif %}
-  GROUP BY highway
+  GROUP BY highway, railway
+{% if zoom >= 7 %}
+UNION ALL
+SELECT
+    ST_AsMVTGeom((ST_Dump(ST_LineMerge(ST_Collect(way)))).geom, {{bbox}}, {{extent}}) AS way,
+    NULL AS highway,
+    railway
+  FROM planet_osm_roads
+  WHERE way && {{bbox}}
+    AND railway IS NOT NULL
+    AND railway != 'preserved'
+    AND (service IS NULL OR service NOT IN ('spur', 'siding', 'yard'))
+  GROUP BY highway, railway
+{% endif %}
