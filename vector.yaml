@@ -14,7 +14,7 @@ vector_layers:
     geometry: [ polygon ]
     sql:
       - minzoom: 0
-        maxzoom: 7
+        maxzoom: 8
         extent: 2048
         file: sql/water.sql.jinja2
   water-lines:
@@ -25,7 +25,7 @@ vector_layers:
     geometry: [ linestring ]
     sql:
       - minzoom: 7
-        maxzoom: 7
+        maxzoom: 8
         extent: 2048
         file: sql/water-lines.sql.jinja2
   admin-names:
@@ -37,7 +37,7 @@ vector_layers:
     geometry: [ point ]
     sql:
       - minzoom: 2
-        maxzoom: 7
+        maxzoom: 8
         file: sql/admin-names.sql.jinja2
   place-names:
     fields:
@@ -49,7 +49,7 @@ vector_layers:
     geometry: [ point ]
     sql:
       - minzoom: 3
-        maxzoom: 7
+        maxzoom: 8
         file: sql/place-names.sql.jinja2
   transportation:
     fields:
@@ -61,8 +61,8 @@ vector_layers:
     geometry: [ line ]
     sql:
       - minzoom: 5
-        maxzoom: 7
-        extent: 4096
+        maxzoom: 8
+        extent: 2048
         file: sql/transportation.sql.jinja2
   ferry-routes:
     fields:
@@ -71,6 +71,28 @@ vector_layers:
     geometry: [ line ]
     sql:
       - minzoom: 7
-        maxzoom: 7
-        extent: 4096
+        maxzoom: 8
+        extent: 2048
         file: sql/ferry-routes.sql.jinja2
+  protected-areas:
+    fields:
+      osm_id: OpenStreetMap ID of the feature
+      boundary: Type of protected area
+    descriptions: National parks, aboriginal lands, and military areas
+    geometry: [ polygon ]
+    sql:
+      - minzoom: 8
+        maxzoom: 8
+        extent: 2048
+        file: sql/protected-areas.sql.jinja2
+  protected-area-names:
+    fields:
+      osm_id: OpenStreetMap ID of the feature
+      boundary: Type of protected area
+      name: Name of the protected area
+      way_area: Area of the feature in EPSG:3857
+    sql:
+      - minzoom: 8
+        maxzoom: 8
+        extent: 1024
+        file: sql/protected-area-names.sql.jinja2

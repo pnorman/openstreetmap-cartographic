@@ -121,7 +121,7 @@
             "primary",
             3.4,
             "secondary",
-            3,
+            2.2,
             0
           ],
           9,
@@ -138,9 +138,9 @@
             "primary",
             3.8,
             "secondary",
-            3.1,
-            "tertiary",
             2.7,
+            "tertiary",
+            2.2,
             0
           ]
         ]
@@ -165,7 +165,7 @@
           "primary",
           "#f4c37d",
           "secondary",
-          "#e7ed9d",
+          "#bbbbbb",
           [
             "match",
             [
@@ -293,6 +293,29 @@
       }
     },
     {
+      "id": "protected-areas",
+      "source": "vector",
+      "type": "line",
+      "source-layer": "protected-areas",
+      "layout": {},
+      "paint": {
+        "line-color": [
+          "match",
+          [
+            "get",
+            "boundary"
+          ],
+          "national_park",
+          "#008000",
+          "aboriginal_lands",
+          "#82643a",
+          "red"
+        ],
+        "line-opacity": 0.25,
+        "line-width": 1.2
+      }
+    },
+    {
       "id": "place-names",
       "source": "vector",
       "source-layer": "place-names",
@@ -342,7 +365,8 @@
             0
           ]
         ],
-        "text-padding": 15
+        "text-padding": 15,
+        "symbol-avoid-edges": false
       }
     },
     {
@@ -389,6 +413,35 @@
         "text-halo-width": 1
       },
       "source-layer": "admin-names"
+    },
+    {
+      "id": "protected-area-names",
+      "source": "vector",
+      "type": "symbol",
+      "source-layer": "protected-area-names",
+      "paint": {
+        "text-color": [
+          "match",
+          [
+            "get",
+            "boundary"
+          ],
+          "national_park",
+          "#008000",
+          "aboriginal_lands",
+          "#82643a",
+          "red"
+        ],
+        "text-halo-color": "rgba(255,255,255,0.6)",
+        "text-halo-width": 1
+      },
+      "layout": {
+        "text-field": "{name}",
+        "text-size": 10,
+        "text-font": [
+          "Klokantech Noto Sans Italic"
+        ]
+      }
     }
   ]
 }

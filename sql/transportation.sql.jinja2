@@ -1,27 +1,35 @@
 SELECT
-    ST_AsMVTGeom((ST_Dump(ST_LineMerge(ST_Collect(way)))).geom, {{bbox}}, {{extent}}) AS way,
+  ST_AsMVTGeom(way, {{bbox}}, {{extent}}) AS way,
+  highway,
+  railway
+  FROM (
+SELECT
+    ST_RemoveRepeatedPoints((ST_Dump(ST_LineMerge(ST_Collect(way)))).geom, 4*{{coordinate_length}}) AS way,
     highway,
-    NULL AS railway
+    NULL AS railway,
+    z_order
   FROM planet_osm_roads
   WHERE way && {{bbox}}
 {% if zoom <= 6 %}
     AND highway IN ('motorway', 'trunk')
-{% elif zoom <= 8 %}
+{% elif zoom <= 7 %}
     AND highway IN ('motorway', 'trunk', 'primary')
 {% else %}
     AND highway IN ('motorway', 'trunk', 'primary', 'secondary')
 {% endif %}
-  GROUP BY highway, railway
+  GROUP BY highway, railway, z_order
 {% if zoom >= 7 %}
 UNION ALL
 SELECT
-    ST_AsMVTGeom((ST_Dump(ST_LineMerge(ST_Collect(way)))).geom, {{bbox}}, {{extent}}) AS way,
+    ST_RemoveRepeatedPoints((ST_Dump(ST_LineMerge(ST_Collect(way)))).geom, 4*{{coordinate_length}}) AS way,
     NULL AS highway,
-    railway
+    railway,
+    z_order
   FROM planet_osm_roads
   WHERE way && {{bbox}}
-    AND railway IS NOT NULL
-    AND railway != 'preserved'
+    AND railway = 'rail'
     AND (service IS NULL OR service NOT IN ('spur', 'siding', 'yard'))
-  GROUP BY highway, railway
+  GROUP BY highway, railway, z_order
 {% endif %}
+  ) AS unordered_transportation
+  ORDER BY z_order
