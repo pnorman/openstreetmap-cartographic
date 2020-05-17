@@ -293,7 +293,7 @@
       }
     },
     {
-      "id": "protected-areas",
+      "id": "protected-areas-outline",
       "source": "vector",
       "type": "line",
       "source-layer": "protected-areas",
@@ -309,10 +309,89 @@
           "#008000",
           "aboriginal_lands",
           "#82643a",
-          "red"
+          [
+            "match",
+            [
+              "get",
+              "landuse"
+            ],
+            "military",
+            "#ff5555",
+            "red"
+          ]
         ],
         "line-opacity": 0.25,
         "line-width": 1.2
+      }
+    },
+    {
+      "id": "protected-areas-fill",
+      "source": "vector",
+      "type": "fill",
+      "source-layer": "protected-areas",
+      "layout": {},
+      "paint": {
+        "fill-color": [
+          "match",
+          [
+            "get",
+            "boundary"
+          ],
+          "national_park",
+          "#008000",
+          "aboriginal_lands",
+          "#82643a",
+          [
+            "match",
+            [
+              "get",
+              "landuse"
+            ],
+            "military",
+            "#ff5555",
+            "red"
+          ]
+        ],
+        "fill-opacity": 0.06
+      },
+      "minzoom": 8
+    },
+    {
+      "id": "protected-area-names",
+      "source": "vector",
+      "type": "symbol",
+      "source-layer": "protected-area-names",
+      "paint": {
+        "text-color": [
+          "match",
+          [
+            "get",
+            "boundary"
+          ],
+          "national_park",
+          "#008000",
+          "aboriginal_lands",
+          "#82643a",
+          [
+            "match",
+            [
+              "get",
+              "landuse"
+            ],
+            "military",
+            "#8a0000",
+            "red"
+          ]
+        ],
+        "text-halo-color": "rgba(255,255,255,0.6)",
+        "text-halo-width": 1
+      },
+      "layout": {
+        "text-field": "{name}",
+        "text-size": 10,
+        "text-font": [
+          "Klokantech Noto Sans Italic"
+        ]
       }
     },
     {
@@ -413,35 +492,6 @@
         "text-halo-width": 1
       },
       "source-layer": "admin-names"
-    },
-    {
-      "id": "protected-area-names",
-      "source": "vector",
-      "type": "symbol",
-      "source-layer": "protected-area-names",
-      "paint": {
-        "text-color": [
-          "match",
-          [
-            "get",
-            "boundary"
-          ],
-          "national_park",
-          "#008000",
-          "aboriginal_lands",
-          "#82643a",
-          "red"
-        ],
-        "text-halo-color": "rgba(255,255,255,0.6)",
-        "text-halo-width": 1
-      },
-      "layout": {
-        "text-field": "{name}",
-        "text-size": 10,
-        "text-font": [
-          "Klokantech Noto Sans Italic"
-        ]
-      }
     }
   ]
 }

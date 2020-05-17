@@ -81,7 +81,7 @@ vector_layers:
     descriptions: National parks, aboriginal lands, and military areas
     geometry: [ polygon ]
     sql:
-      - minzoom: 8
+      - minzoom: 7
         maxzoom: 8
         extent: 2048
         file: sql/protected-areas.sql.jinja2
@@ -92,7 +92,7 @@ vector_layers:
       name: Name of the protected area
       way_area: Area of the feature in EPSG:3857
     sql:
-      - minzoom: 8
+      - minzoom: 7
         maxzoom: 8
         extent: 1024
         file: sql/protected-area-names.sql.jinja2
