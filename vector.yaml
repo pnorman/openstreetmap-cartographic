@@ -96,3 +96,12 @@ vector_layers:
         maxzoom: 8
         extent: 1024
         file: sql/protected-area-names.sql.jinja2
+  landuse:
+    fields:
+      osm_id: OpenStreetMap ID of the feature
+      landuse: Type of landuse
+    sql:
+      - minzoom: 8
+        maxzoom: 8
+        extent: 1024
+        file: sql/landuse.sql.jinja2

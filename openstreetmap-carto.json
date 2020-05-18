@@ -38,6 +38,37 @@
       }
     },
     {
+      "id": "landuse-fill",
+      "source": "vector",
+      "type": "fill",
+      "source-layer": "landuse",
+      "paint": {
+        "fill-color": [
+          "match",
+          [
+            "get",
+            "landuse"
+          ],
+          "farmland",
+          "#eef0d5",
+          "farmyard",
+          "#eef0d5",
+          "residential",
+          "#d0d0d0",
+          "commercial",
+          "#d0d0d0",
+          "retail",
+          "#d0d0d0",
+          "industrial",
+          "#d0d0d0",
+          "red"
+        ]
+      },
+      "layout": {
+        "visibility": "visible"
+      }
+    },
+    {
       "id": "ferry-routes",
       "source": "vector",
       "source-layer": "ferry-routes",
