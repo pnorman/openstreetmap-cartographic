@@ -11,7 +11,7 @@ vector_layers:
       osm_id: OpenStreetMap ID of the feature
       water: Type of water
     description: Waterbody and ocean areas
-    geometry: [ polygon ]
+    geometry_type: [ polygon ]
     sql:
       - minzoom: 0
         maxzoom: 8
@@ -22,7 +22,7 @@ vector_layers:
       osm_id: OpenStreetMap ID of the feature
       waterway: Type of waterway
     description: Rivers, streams, and other waterways
-    geometry: [ linestring ]
+    geometry_type: [ linestring ]
     sql:
       - minzoom: 7
         maxzoom: 8
@@ -34,7 +34,7 @@ vector_layers:
       name: Name of admin area
       area: Area of admin area in square mercator meters
     description: Points for labeling admin areas
-    geometry: [ point ]
+    geometry_type: [ point ]
     sql:
       - minzoom: 2
         maxzoom: 8
@@ -46,7 +46,7 @@ vector_layers:
       population: Population of place
       capital: If the place is a capital
     description: Places
-    geometry: [ point ]
+    geometry_type: [ point ]
     sql:
       - minzoom: 3
         maxzoom: 8
@@ -58,7 +58,7 @@ vector_layers:
       highway: Class of road
       railway: Class of rail
     description: Transportation features
-    geometry: [ line ]
+    geometry_type: [ line ]
     sql:
       - minzoom: 5
         maxzoom: 8
@@ -68,7 +68,7 @@ vector_layers:
     fields:
       osm_id: OpenStreetMap ID of the feature
     description: Ferry routes
-    geometry: [ line ]
+    geometry_type: [ line ]
     sql:
       - minzoom: 7
         maxzoom: 8
@@ -79,7 +79,7 @@ vector_layers:
       osm_id: OpenStreetMap ID of the feature
       boundary: Type of protected area
     descriptions: National parks, aboriginal lands, and military areas
-    geometry: [ polygon ]
+    geometry_type: [ polygon ]
     sql:
       - minzoom: 7
         maxzoom: 8
