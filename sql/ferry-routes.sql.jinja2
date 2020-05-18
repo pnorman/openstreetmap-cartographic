@@ -1,0 +1,6 @@
+SELECT
+    ST_AsMVTGeom(way, {{bbox}}, {{extent}}) AS way
+  FROM planet_osm_line
+  WHERE way && {{bbox}}
+    AND route = 'ferry'
+    AND osm_id > 0

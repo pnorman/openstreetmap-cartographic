@@ -1,0 +1,8 @@
+SELECT
+    ST_AsMVTGeom((ST_Dump(ST_LineMerge(ST_Collect(way)))).geom, {{bbox}}, {{extent}}) AS way,
+    name,
+    waterway
+  FROM planet_osm_line
+  WHERE way && {{bbox}}
+    AND waterway = 'river'
+  GROUP BY waterway, name
