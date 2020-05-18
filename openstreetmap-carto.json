@@ -475,8 +475,7 @@
             0
           ]
         ],
-        "text-padding": 15,
-        "symbol-avoid-edges": false
+        "text-padding": 15
       }
     },
     {
