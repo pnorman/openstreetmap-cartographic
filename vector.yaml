@@ -101,7 +101,7 @@ vector_layers:
       osm_id: OpenStreetMap ID of the feature
       landuse: Type of landuse
     sql:
-      - minzoom: 8
+      - minzoom: 7
         maxzoom: 8
         extent: 1024
         file: sql/landuse.sql.jinja2
