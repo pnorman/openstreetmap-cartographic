@@ -1,4 +1,4 @@
-# OpenStreetMap Carto Client
+# OpenStreetMap Cartographic
 
 ## What is it?
 
@@ -40,3 +40,9 @@ We're targeting deploying on the scale of tile.openstreetmap.org and pre-generat
 ## Why does it have Carto in the name when it doesn't use CartoCSS?
 
 It's a port of OpenStreetMap Carto, and we're bad at naming.
+
+## Legal
+
+The code and cartography is licensed under CC0 as described in [LICENSE.txt](LICENSE.txt).
+
+OpenStreetMap is a trademark of the OpenStreetMap Foundation, and is used with their permission. This project is not endorsed by or affiliated with the OpenStreetMap Foundation.
