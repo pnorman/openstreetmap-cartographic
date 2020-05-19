@@ -1,0 +1,13 @@
+SELECT
+    ST_AsMVTGeom(ST_PointOnSurface(way), {{bbox}}, {{extent}}) AS way,
+    osm_id,
+    CASE WHEN "natural" IN ('wood', 'heath', 'grassland', 'scrub', 'wetland', 'mud') THEN "natural" END AS "natural",
+    CASE WHEN "natural" = 'wetland' THEN tags->'wetland' END AS wetland,
+    CASE WHEN landuse IN ('forest', 'meadow', 'grass') THEN landuse END AS landuse,
+    name
+  FROM planet_osm_polygon
+  WHERE way && {{bbox}}
+    AND name IS NOT NULL
+    AND ("natural" IN ('wood', 'heath', 'grassland', 'scrub', 'wetland', 'mud')
+      OR landuse IN ('forest', 'meadow', 'grass'))
+    AND way_area > 0.1^2*{{tile_area}}

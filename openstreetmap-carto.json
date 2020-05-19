@@ -18,23 +18,69 @@
       }
     },
     {
-      "id": "water",
+      "id": "vegetation",
       "source": "vector",
-      "source-layer": "water",
       "type": "fill",
+      "source-layer": "vegetation",
       "paint": {
-        "fill-color": "#aad3df",
-        "fill-opacity": 1
-      }
-    },
-    {
-      "id": "water-lines",
-      "source": "vector",
-      "source-layer": "water-lines",
-      "type": "line",
-      "paint": {
-        "line-color": "#aad3df",
-        "line-width": 0.7
+        "fill-color": [
+          "match",
+          [
+            "get",
+            "natural"
+          ],
+          "wood",
+          "#add19e",
+          "grassland",
+          "#cdebb0",
+          "heath",
+          "#d6d99f",
+          "scrub",
+          "#c8d7ab",
+          "mud",
+          "rgba(0,0,0,0)",
+          "wetland",
+          [
+            "match",
+            [
+              "get",
+              "wetland"
+            ],
+            "swamp",
+            "#add19e",
+            "mangrove",
+            "#c8d7ab",
+            "reedbed",
+            "#cdebb0",
+            "bog",
+            "#d6d99f",
+            "string_bog",
+            "#d6d99f",
+            "wet_meadow",
+            "#cdebb0",
+            "fen",
+            "#cdebb0",
+            "saltmarsh",
+            "#cdebb0",
+            "marsh",
+            "#cdebb0",
+            "rgba(0,0,0,0)"
+          ],
+          [
+            "match",
+            [
+              "get",
+              "landuse"
+            ],
+            "forest",
+            "#add19e",
+            "meadow",
+            "#cdebb0",
+            "grass",
+            "#cdebb0",
+            "red"
+          ]
+        ]
       }
     },
     {
@@ -70,6 +116,26 @@
       },
       "layout": {
         "visibility": "visible"
+      }
+    },
+    {
+      "id": "water",
+      "source": "vector",
+      "source-layer": "water",
+      "type": "fill",
+      "paint": {
+        "fill-color": "#aad3df",
+        "fill-opacity": 1
+      }
+    },
+    {
+      "id": "water-lines",
+      "source": "vector",
+      "source-layer": "water-lines",
+      "type": "line",
+      "paint": {
+        "line-color": "#aad3df",
+        "line-width": 0.7
       }
     },
     {
@@ -387,7 +453,7 @@
             "red"
           ]
         ],
-        "fill-opacity": 0.06
+        "fill-opacity": 0.04
       },
       "minzoom": 8
     },
@@ -526,6 +592,42 @@
         "text-halo-width": 1
       },
       "source-layer": "admin-names"
+    },
+    {
+      "id": "vegetation-names",
+      "source": "vector",
+      "type": "symbol",
+      "source-layer": "vegetation-names",
+      "layout": {
+        "text-field": "{name}",
+        "text-font": [
+          "Klokantech Noto Sans Italic"
+        ],
+        "text-size": 11
+      },
+      "paint": {
+        "text-color": [
+          "match",
+          [
+            "get",
+            "natural"
+          ],
+          "wood",
+          "#46673b",
+          [
+            "match",
+            [
+              "get",
+              "landuse"
+            ],
+            "forest",
+            "#46673b",
+            "red"
+          ]
+        ],
+        "text-halo-color": "rgba(255,255,255,0.6)",
+        "text-halo-width": 1
+      }
     }
   ]
 }
