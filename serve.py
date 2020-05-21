@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import http.server
-from functools import partial
 
 class CachelessHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
     def end_headers(self):
@@ -12,5 +11,4 @@ class CachelessHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
 
 
 if __name__ == '__main__':
-    handler_class = partial(CachelessHTTPRequestHandler, directory="tiles/")
-    http.server.test(HandlerClass=handler_class, port=8080, bind="127.0.0.1")
+    http.server.test(HandlerClass=CachelessHTTPRequestHandler, port=8080, bind="127.0.0.1")
