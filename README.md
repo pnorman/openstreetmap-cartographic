@@ -29,7 +29,7 @@ You can't generate for just a bounding box until [it is implemented in tilekiln]
 
 Make a TileJSON with information about the tiles with ``tilekiln-tilejson vector.yaml "http://localhost:8000/tiles/{id}/{z}/{x}/{y}.mvt" > tiles/dev.json``
 
-Serve up the tiles with ``./serve`` and you'll get a tilejson at ``http://localhost:8000/tiles/dev.json`` and the stylesheet at ``http://localhost:8000/openstreetmap-cartographic.json``. Load the stylesheet into something like [Fresco](https://fresco.gospatial.org/) for a better editing experience.
+Serve up the tiles with ``./serve.py`` and you'll get a tilejson at ``http://localhost:8080/tiles/dev.json`` and the stylesheet at ``http://localhost:8080/openstreetmap-cartographic.json``. Load the stylesheet into something like [Fresco](https://fresco.gospatial.org/) for a better editing experience.
 
 If you get fancy and aren't loading tiles from localhost, make sure to set your CORS headers and update the URLs.
 
