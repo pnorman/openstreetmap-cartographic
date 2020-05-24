@@ -5,7 +5,7 @@
   "sources": {
     "vector": {
       "type": "vector",
-      "url": "http://localhost:8080/dev.json"
+      "url": "http://localhost:8080/tiles/dev.json"
     }
   },
   "glyphs": "https://fonts.openmaptiles.org/{fontstack}/{range}.pbf",

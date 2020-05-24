@@ -12,7 +12,7 @@ Previous work has [used tilelive](rory) which is a technical dead-end, used exis
 
 - PostgreSQL 9.6 + PostGIS. PostGIS 3.0 is **strongly** recommended.
 - OpenStreetMap data loaded in a database according to the [standard OpenStreetMap Carto](https://github.com/gravitystorm/openstreetmap-carto/blob/master/INSTALL.md#openstreetmap-data) instructions.
-- Python 3 and Tilekiln 0.0.4 or later
+- Python 3 and Tilekiln 0.0.5 or later
 
 Install Tilekiln with
 ```sh
@@ -27,7 +27,7 @@ Install Tilekiln. Generate tiles with ``tilekiln-generate area -d gis vector.yam
 
 You can't generate for just a bounding box until [it is implemented in tilekiln](https://github.com/pnorman/tilekiln/issues/8) so it helps to have database CPU to throw at this.
 
-Make a TileJSON with information about the tiles with ``tilekiln-tilejson vector.yaml "http://localhost:8000/tiles/{id}/{z}/{x}/{y}.mvt" > tiles/dev.json``
+Make a TileJSON with information about the tiles with ``tilekiln-tilejson vector.yaml "http://localhost:8080/tiles/{id}/{z}/{x}/{y}.mvt" > tiles/dev.json``
 
 Serve up the tiles with ``./serve.py`` and you'll get a tilejson at ``http://localhost:8080/tiles/dev.json`` and the stylesheet at ``http://localhost:8080/openstreetmap-cartographic.json``. Load the stylesheet into something like [Fresco](https://fresco.gospatial.org/) for a better editing experience.
 
