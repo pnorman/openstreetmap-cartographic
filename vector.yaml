@@ -61,10 +61,6 @@ vector_layers:
     geometry_type: [ line ]
     sql:
       - minzoom: 5
-        maxzoom: 8
-        extent: 2048
-        file: sql/transportation-lz.sql.jinja2
-      - minzoom: 9
         maxzoom: 9
         extent: 2048
         file: sql/transportation-lz.sql.jinja2
@@ -106,10 +102,6 @@ vector_layers:
       landuse: Type of landuse
     sql:
       - minzoom: 7
-        maxzoom: 8
-        extent: 1024
-        file: sql/landuse-lz.sql.jinja2
-      - minzoom: 9
         maxzoom: 9
         extent: 1024
         file: sql/landuse-lz.sql.jinja2
@@ -118,10 +110,6 @@ vector_layers:
       osm_id: OpenStreetMap ID of the feature
     sql:
       - minzoom: 7
-        maxzoom: 8
-        extent: 1024
-        file: sql/vegetation-lz.sql.jinja2
-      - minzoom: 9
         maxzoom: 9
         extent: 1024
         file: sql/vegetation-lz.sql.jinja2
@@ -130,10 +118,6 @@ vector_layers:
       osm_id: OpenStreetMap ID of the feature
     sql:
       - minzoom: 7
-        maxzoom: 8
-        extent: 1024
-        file: sql/vegetation-names-lz.sql.jinja2
-      - minzoom: 9
         maxzoom: 9
         extent: 1024
         file: sql/vegetation-names-lz.sql.jinja2
