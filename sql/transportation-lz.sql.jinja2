@@ -8,14 +8,20 @@ SELECT
     highway,
     NULL AS railway,
     z_order
+{% if zoom <= 8 %}
   FROM planet_osm_roads
+{% else %}
+  FROM planet_osm_line
+{% endif %}
   WHERE way && {{bbox}}
 {% if zoom <= 6 %}
     AND highway IN ('motorway', 'trunk')
 {% elif zoom <= 7 %}
     AND highway IN ('motorway', 'trunk', 'primary')
-{% else %}
+{% elif zoom <= 8 %}
     AND highway IN ('motorway', 'trunk', 'primary', 'secondary')
+{% else %}
+    AND highway IN ('motorway', 'trunk', 'primary', 'secondary', 'tertiary')
 {% endif %}
   GROUP BY highway, railway, z_order
 {% if zoom >= 7 %}

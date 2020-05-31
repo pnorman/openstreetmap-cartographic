@@ -2,7 +2,7 @@ SELECT
     ST_AsMVTGeom(way, {{bbox}}, {{extent}}) AS way,
     NULL as osm_id,
     'ocean' AS water
-{% if zoom <= 12 %}
+{% if zoom <= 8 %}
   FROM simplified_water_polygons
 {% else %}
   FROM water_polygons

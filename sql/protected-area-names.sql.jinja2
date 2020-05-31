@@ -4,10 +4,12 @@ SELECT
     name,
     boundary,
     landuse,
+    leisure,
     way_area
   FROM planet_osm_polygon
   WHERE way && {{bbox}}
     AND name IS NOT NULL
     AND (boundary IN ('aboriginal_lands', 'national_park')
-    OR landuse = 'military')
+    OR landuse = 'military'
+    OR leisure = 'nature_reserve')
     AND way_area > 0.1^2*{{tile_area}}
