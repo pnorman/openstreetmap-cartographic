@@ -396,6 +396,77 @@
       }
     },
     {
+      "id": "protected-areas-wideoutline",
+      "source": "vector",
+      "type": "line",
+      "source-layer": "protected-areas",
+      "paint": {
+        "line-color": [
+          "match",
+          [
+            "get",
+            "boundary"
+          ],
+          "national_park",
+          "#008000",
+          "aboriginal_lands",
+          "#82643a",
+          [
+            "match",
+            [
+              "get",
+              "leisure"
+            ],
+            "nature_reserve",
+            "#008000",
+            [
+              "match",
+              [
+                "get",
+                "landuse"
+              ],
+              "military",
+              "#ff5555",
+              "red"
+            ]
+          ]
+        ],
+        "line-opacity": 0.15,
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          8,
+          0,
+          9,
+          3.6,
+          11,
+          4
+        ],
+        "line-offset": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          8,
+          0,
+          9,
+          0.9,
+          11,
+          1
+        ]
+      },
+      "minzoom": 9,
+      "layout": {}
+    },
+    {
       "id": "protected-areas-outline",
       "source": "vector",
       "type": "line",
@@ -433,7 +504,23 @@
           ]
         ],
         "line-opacity": 0.25,
-        "line-width": 1.2
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          7,
+          1.2,
+          8,
+          1.5,
+          9,
+          1.8,
+          11,
+          2
+        ]
       }
     },
     {
