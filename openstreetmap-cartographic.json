@@ -135,7 +135,19 @@
       "type": "line",
       "paint": {
         "line-color": "#aad3df",
-        "line-width": 0.7
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          8,
+          0.7,
+          13,
+          3
+        ]
       }
     },
     {
