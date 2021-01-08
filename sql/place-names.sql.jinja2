@@ -1,9 +1,9 @@
 SELECT
+    DISTINCT ON (ST_SnapToGrid(ST_PointOnSurface(way), {{tile_length}}/32))
     ST_AsMVTGeom(ST_PointOnSurface(way), {{bbox}}, {{extent}}) AS way,
     osm_id,
     name,
     place,
-    population,
     capital
   FROM
   (SELECT
@@ -40,6 +40,7 @@ SELECT
     AND place IN ('city', 'town', 'village', 'hamlet')
 {% endif %}
   ORDER BY
+    ST_SnapToGrid(ST_PointOnSurface(way), {{tile_length}}/32),
     capital,
     CASE place
       WHEN 'city' THEN 0
