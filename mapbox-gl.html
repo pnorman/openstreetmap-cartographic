@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>OpenStreetMap Cartographic</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mapbox-gl/1.10.1/mapbox-gl.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mapbox-gl/1.10.1/mapbox-gl.css" rel="stylesheet" />
+<style>
+	body { margin: 0; padding: 0; }
+	#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+var map = new mapboxgl.Map({
+container: 'map', // container id
+style: 'openstreetmap-cartographic.json', // stylesheet location
+center: [-120, 50], // starting position [lng, lat]
+zoom: 4, // starting zoom
+hash: true
+});
+</script>
+
+</body>
+</html>
