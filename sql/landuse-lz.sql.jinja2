@@ -1,7 +1,8 @@
 SELECT
-    ST_AsMVTGeom(way, {{bbox}}, {{extent}}) AS way,
+    ST_AsMVTGeom(ST_Collect(way), {{bbox}}, {{extent}}) AS way,
     landuse
   FROM planet_osm_polygon
   WHERE way && {{bbox}}
     AND landuse IN ('farmyard', 'farmland', 'residential', 'commercial', 'retail', 'industrial', 'vineyard', 'orchard')
     AND way_area > 4*{{coordinate_area}}
+  GROUP BY landuse

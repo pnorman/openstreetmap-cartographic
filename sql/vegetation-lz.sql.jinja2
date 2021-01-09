@@ -1,5 +1,5 @@
 SELECT
-    ST_AsMVTGeom(way, {{bbox}}, {{extent}}) AS way,
+    ST_AsMVTGeom(ST_Collect(way), {{bbox}}, {{extent}}) AS way,
     CASE WHEN "natural" IN ('wood', 'heath', 'grassland', 'scrub', 'wetland', 'mud') THEN "natural" END AS "natural",
     CASE WHEN "natural" = 'wetland' THEN tags->'wetland' END AS wetland,
     CASE WHEN landuse IN ('forest', 'meadow', 'grass') THEN landuse END AS landuse
@@ -8,3 +8,4 @@ SELECT
     AND ("natural" IN ('wood', 'heath', 'grassland', 'scrub', 'wetland', 'mud')
       OR landuse IN ('forest', 'meadow', 'grass'))
     AND way_area > 4*{{coordinate_area}}
+  GROUP BY "natural", tags->'wetland', landuse
