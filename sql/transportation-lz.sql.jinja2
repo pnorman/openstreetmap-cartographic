@@ -4,7 +4,7 @@ SELECT
   railway
   FROM (
 SELECT
-    ST_RemoveRepeatedPoints((ST_Dump(ST_LineMerge(ST_Collect(way)))).geom, 4*{{coordinate_length}}) AS way,
+    ST_RemoveRepeatedPoints(ST_LineMerge(ST_Collect(way)), 4*{{coordinate_length}}) AS way,
     highway,
     NULL AS railway,
     z_order
@@ -27,7 +27,7 @@ SELECT
 {% if zoom >= 7 %}
 UNION ALL
 SELECT
-    ST_RemoveRepeatedPoints((ST_Dump(ST_LineMerge(ST_Collect(way)))).geom, 4*{{coordinate_length}}) AS way,
+    ST_RemoveRepeatedPoints(ST_LineMerge(ST_Collect(way)), 4*{{coordinate_length}}) AS way,
     NULL AS highway,
     railway,
     z_order
