@@ -1,6 +1,5 @@
 SELECT
-    ST_AsMVTGeom(way, {{bbox}}, {{extent}}) AS way,
-    NULL as osm_id,
+    ST_AsMVTGeom(ST_Collect(way), {{bbox}}, {{extent}}) AS way,
     'ocean' AS water
 {% if zoom <= 8 %}
   FROM simplified_water_polygons
@@ -10,8 +9,7 @@ SELECT
   WHERE way && {{bbox}}
 UNION ALL
 SELECT
-    ST_AsMVTGeom(way, {{bbox}}, {{extent}}) AS way,
-    osm_id,
+    ST_AsMVTGeom(ST_Collect(way), {{bbox}}, {{extent}}) AS way,
     CASE
       WHEN waterway = 'riverbank' THEN 'river'
       WHEN waterway = 'dock' THEN 'dock'
@@ -24,3 +22,4 @@ SELECT
         OR landuse IN ('reservoir', 'basin')
         OR "natural" IN ('water'))
     AND way_area > 256 * {{coordinate_area}}
+  GROUP BY waterway, landuse, water

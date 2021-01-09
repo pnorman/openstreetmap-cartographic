@@ -1,5 +1,5 @@
 SELECT
-    ST_AsMVTGeom((ST_Dump(ST_LineMerge(ST_Collect(way)))).geom, {{bbox}}, {{extent}}) AS way,
+    ST_AsMVTGeom(ST_RemoveRepeatedPoints(ST_LineMerge(ST_Collect(way)),  4*{{coordinate_length}}), {{bbox}}, {{extent}}) AS way,
     name,
     waterway
   FROM planet_osm_line

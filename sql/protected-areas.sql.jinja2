@@ -1,6 +1,5 @@
 SELECT
-    ST_AsMVTGeom(way, {{bbox}}, {{extent}}) AS way,
-    osm_id,
+    ST_AsMVTGeom(ST_Collect(way), {{bbox}}, {{extent}}) AS way,
     boundary,
     landuse,
     leisure
@@ -10,3 +9,4 @@ SELECT
     OR landuse = 'military'
     OR leisure = 'nature_reserve')
     AND way_area > 256*{{coordinate_area}}
+  GROUP BY boundary, landuse, leisure
