@@ -1,6 +1,5 @@
 SELECT
     ST_AsMVTGeom(way, {{bbox}}, {{extent}}) AS way,
-    osm_id,
     landuse
   FROM planet_osm_polygon
   WHERE way && {{bbox}}

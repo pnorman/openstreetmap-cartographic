@@ -1,6 +1,5 @@
 SELECT
     ST_AsMVTGeom(way, {{bbox}}, {{extent}}) AS way,
-    osm_id,
     CASE WHEN "natural" IN ('wood', 'heath', 'grassland', 'scrub', 'wetland', 'mud') THEN "natural" END AS "natural",
     CASE WHEN "natural" = 'wetland' THEN tags->'wetland' END AS wetland,
     CASE WHEN landuse IN ('forest', 'meadow', 'grass') THEN landuse END AS landuse
