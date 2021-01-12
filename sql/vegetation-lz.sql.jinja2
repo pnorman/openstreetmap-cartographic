@@ -7,5 +7,4 @@ SELECT
   WHERE way && {{bbox}}
     AND ("natural" IN ('wood', 'heath', 'grassland', 'scrub', 'wetland', 'mud')
       OR landuse IN ('forest', 'meadow', 'grass'))
-    AND way_area > 4*{{coordinate_area}}
   GROUP BY "natural", tags->'wetland', landuse
