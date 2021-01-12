@@ -4,6 +4,8 @@
 
 A port of OpenStreetMap Carto targeting client-side rendering with vector tiles.
 
+[A public demo is available](https://took.paulnorman.ca/build/mapbox-gl.html).
+
 ## How is it different from previous work?
 
 Previous work has [used tilelive](rory) which is a technical dead-end, used existing vector tile sets which didn't have the richness of OpenStreetMap Data that OpenStreetMap Carto shows, or has not been intended to be a continuation of the OpenStreetMap Carto project.
