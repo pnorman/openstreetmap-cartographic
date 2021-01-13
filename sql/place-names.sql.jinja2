@@ -11,6 +11,7 @@ FROM (
       osm_id,
       name,
       place,
+      population,
       capital
     FROM
     (SELECT
@@ -59,12 +60,12 @@ FROM (
       population DESC
 ) AS deduplicated_places
 ORDER BY -- Ordering for rendering - position doesn't matter here
-  capital ASC
+  capital DESC,
   CASE place
     WHEN 'city' THEN 0
     WHEN 'town' THEN 1
     WHEN 'village' THEN 2
     WHEN 'hamlet' THEN 3
     ELSE 4
-    END DESC,
-  population ASC
+    END ASC,
+  population DESC
