@@ -748,6 +748,25 @@
         "text-halo-width": 1
       },
       "source-layer": "admin-names"
+    },
+    {
+      "id": "water-names",
+      "source": "vector",
+      "source-layer": "water-names",
+      "type": "symbol",
+      "layout": {
+        "text-field": "{name}",
+        "text-font": [
+          "Klokantech Noto Sans Italic"
+        ],
+        "text-size": 11,
+        "visibility": "visible"
+      },
+      "paint": {
+        "text-color": "#4d80b3",
+        "text-halo-color": "rgba(255,255,255,0.6)",
+        "text-halo-width": 1
+      }
     }
   ]
 }
