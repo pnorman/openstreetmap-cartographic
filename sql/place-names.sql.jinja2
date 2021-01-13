@@ -1,52 +1,70 @@
 SELECT
-    DISTINCT ON (ST_SnapToGrid(ST_PointOnSurface(way), {{tile_length}}/16))
-    ST_AsMVTGeom(ST_PointOnSurface(way), {{bbox}}, {{extent}}) AS way,
+    ST_AsMVTGeom(way, {{bbox}}, {{extent}}) AS way,
     osm_id,
     name,
     place,
     capital
-  FROM
-  (SELECT
-      way,
+FROM (
+  SELECT
+      DISTINCT ON (ST_SnapToGrid(ST_PointOnSurface(way), {{tile_length}}/16))
+      ST_PointOnSurface(way) AS way,
       osm_id,
       name,
       place,
-      -- Turn population into an integer for filtering
-      CASE
-        WHEN (tags->'population' ~ '^[0-9]{1,8}$') THEN (tags->'population')::INTEGER
-        WHEN place = 'city' THEN 100000
-        WHEN place = 'town' THEN 1000
-      END AS population,
-      tags @> 'capital=>yes' AS capital
-    FROM planet_osm_point) AS places
-  WHERE way && {{bbox}}
-    AND name IS NOT NULL
-{% if zoom <= 3 %}
-    AND (place IN ('city')
-      AND population > 800000
-      OR capital AND place IN ('city', 'town', 'village', 'hamlet'))
-{% elif zoom <= 4 %}
-    AND (place IN ('city')
-      AND population > 600000
-      OR capital AND place IN ('city', 'town', 'village', 'hamlet') AND population > 300000)
-{% elif zoom <= 5 %}
-    AND (place IN ('city', 'town')
-      AND population > 400000
-      OR capital AND place IN ('city', 'town', 'village', 'hamlet') AND population > 200000)
-{% elif zoom <= 6 %}
-    AND (place IN ('city', 'town')
-      OR capital AND place IN ('city', 'town', 'village', 'hamlet'))
-{% else %}
-    AND place IN ('city', 'town', 'village', 'hamlet')
-{% endif %}
-  ORDER BY
-    ST_SnapToGrid(ST_PointOnSurface(way), {{tile_length}}/16),
-    capital DESC,
-    CASE place
-      WHEN 'city' THEN 0
-      WHEN 'town' THEN 1
-      WHEN 'village' THEN 2
-      WHEN 'hamlet' THEN 3
-      ELSE 4
-      END ASC,
+      capital
+    FROM
+    (SELECT
+        way,
+        osm_id,
+        name,
+        place,
+        -- Turn population into an integer for filtering
+        CASE
+          WHEN (tags->'population' ~ '^[0-9]{1,8}$') THEN (tags->'population')::INTEGER
+          WHEN place = 'city' THEN 100000
+          WHEN place = 'town' THEN 1000
+        END AS population,
+        tags @> 'capital=>yes' AS capital
+      FROM planet_osm_point) AS places
+    WHERE way && {{bbox}}
+      AND name IS NOT NULL
+  {% if zoom <= 3 %}
+      AND (place IN ('city')
+        AND population > 800000
+        OR capital AND place IN ('city', 'town', 'village', 'hamlet'))
+  {% elif zoom <= 4 %}
+      AND (place IN ('city')
+        AND population > 600000
+        OR capital AND place IN ('city', 'town', 'village', 'hamlet') AND population > 300000)
+  {% elif zoom <= 5 %}
+      AND (place IN ('city', 'town')
+        AND population > 400000
+        OR capital AND place IN ('city', 'town', 'village', 'hamlet') AND population > 200000)
+  {% elif zoom <= 6 %}
+      AND (place IN ('city', 'town')
+        OR capital AND place IN ('city', 'town', 'village', 'hamlet'))
+  {% else %}
+      AND place IN ('city', 'town', 'village', 'hamlet')
+  {% endif %}
+    ORDER BY -- Ordering for deduplication
+      ST_SnapToGrid(ST_PointOnSurface(way), {{tile_length}}/16),
+      capital DESC,
+      CASE place
+        WHEN 'city' THEN 0
+        WHEN 'town' THEN 1
+        WHEN 'village' THEN 2
+        WHEN 'hamlet' THEN 3
+        ELSE 4
+        END ASC,
       population DESC
+) AS deduplicated_places
+ORDER BY -- Ordering for rendering - position doesn't matter here
+  capital ASC
+  CASE place
+    WHEN 'city' THEN 0
+    WHEN 'town' THEN 1
+    WHEN 'village' THEN 2
+    WHEN 'hamlet' THEN 3
+    ELSE 4
+    END DESC,
+  population ASC
