@@ -74,7 +74,19 @@ vector_layers:
         maxzoom: 10
         extent: 2048
         file: sql/transportation-lz.sql.jinja2
-  #transportation-points:
+  transportation-points:
+    fields:
+      osm_id: OpenStreetMap ID of the feature
+      name: Name of the point
+      ref: Reference of the point
+      class: Type of point
+    description: Transportation points
+    geometry_type: [ point ]
+    sql:
+      - minzoom: 10
+        maxzoom: 10
+        extent: 1024
+        file: sql/transportation-points.sql.jinja2
   aeroways:
     fields:
       ref: Reference of the runway

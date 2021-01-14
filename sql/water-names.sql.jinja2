@@ -1,5 +1,5 @@
 SELECT
-    ST_AsMVTGeom(ST_PointOnSurface(way), {{bbox}}, {{extent}}) AS way,
+    ST_AsMVTGeom(ST_PointOnSurface(way), {{bbox}}, {{extent}}, {{buffer}}) AS way,
     osm_id,
     name,
     CASE

@@ -1,5 +1,5 @@
 SELECT
-    ST_AsMVTGeom(way, {{bbox}}, {{extent}}) AS way,
+    ST_AsMVTGeom(way, {{bbox}}, {{extent}}, {{buffer}}) AS way,
     osm_id,
     name,
     place,

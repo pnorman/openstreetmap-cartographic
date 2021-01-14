@@ -1,5 +1,5 @@
 SELECT
-    ST_AsMVTGeom(ST_Collect(way), {{bbox}}, {{extent}}) AS way,
+    ST_AsMVTGeom(ST_Collect(way), {{bbox}}, {{extent}}, {{buffer}}) AS way,
     landuse
   FROM planet_osm_polygon
   WHERE way && {{bbox}}

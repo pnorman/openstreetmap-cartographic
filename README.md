@@ -14,7 +14,7 @@ Previous work has [used tilelive](rory) which is a technical dead-end, used exis
 
 - PostgreSQL 9.6 + PostGIS. PostGIS 3.0 is **strongly** recommended.
 - OpenStreetMap data loaded in a database according to the [standard OpenStreetMap Carto](https://github.com/gravitystorm/openstreetmap-carto/blob/master/INSTALL.md#openstreetmap-data) instructions.
-- Python 3 and Tilekiln 0.0.5 or later
+- Python 3 and Tilekiln 0.0.6 or later
 
 Install Tilekiln with
 ```sh

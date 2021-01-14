@@ -756,6 +756,24 @@
       }
     },
     {
+      "id": "transportation-points",
+      "source": "vector",
+      "source-layer": "transportation-points",
+      "type": "symbol",
+      "paint": {
+        "text-color": "#960000",
+        "text-halo-color": "rgba(255,255,255,0.6)",
+        "text-halo-width": 1
+      },
+      "layout": {
+        "text-field": "{ref}",
+        "text-size": 10,
+        "text-font": [
+          "Klokantech Noto Sans Italic"
+        ]
+      }
+    },
+    {
       "layout": {
         "text-font": [
           "match",
