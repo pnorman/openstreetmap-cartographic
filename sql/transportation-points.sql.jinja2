@@ -1,0 +1,8 @@
+SELECT
+    ST_AsMVTGeom(ST_PointOnSurface(way), {{bbox}}, {{extent}}, {{buffer}}) AS way,
+    osm_id,
+    ref,
+    highway AS class
+  FROM planet_osm_point
+  WHERE way && {{bbox}}
+    AND highway = 'motorway_junction'

@@ -1,0 +1,18 @@
+SELECT
+    ST_AsMVTGeom(way, {{bbox}}, {{extent}}, {{buffer}}) AS way,
+    ref,
+    aeroway,
+    bridge
+  FROM
+  (SELECT
+      ST_LineMerge(ST_Collect(way)) AS way,
+      ref,
+      aeroway,
+      bridge IN ('yes', 'boardwalk', 'cantilever', 'covered', 'low_water_crossing', 'movable', 'trestle', 'viaduct') AS bridge
+    FROM planet_osm_line
+    WHERE way && {{bbox}}
+      AND aeroway IN ('runway', 'taxiway')
+    GROUP BY ref, bridge IN ('yes', 'boardwalk', 'cantilever', 'covered', 'low_water_crossing', 'movable', 'trestle', 'viaduct'), aeroway
+  ) AS merged_aeroways
+  ORDER BY bridge NULLS FIRST,
+    CASE WHEN aeroway = 'runway' THEN 1 ELSE 0 END
