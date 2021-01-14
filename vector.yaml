@@ -14,7 +14,7 @@ vector_layers:
     geometry_type: [ polygon ]
     sql:
       - minzoom: 0
-        maxzoom: 9
+        maxzoom: 10
         extent: 2048
         file: sql/water.sql.jinja2
   water-names:
@@ -25,7 +25,7 @@ vector_layers:
     geometry_type: [ point ]
     sql:
       - minzoom: 5
-        maxzoom: 9
+        maxzoom: 10
         extent: 512
         file: sql/water-names.sql.jinja2
   water-lines:
@@ -36,7 +36,7 @@ vector_layers:
     geometry_type: [ linestring ]
     sql:
       - minzoom: 7
-        maxzoom: 9
+        maxzoom: 10
         extent: 2048
         file: sql/water-lines.sql.jinja2
   admin-names:
@@ -48,7 +48,7 @@ vector_layers:
     geometry_type: [ point ]
     sql:
       - minzoom: 2
-        maxzoom: 9
+        maxzoom: 10
         file: sql/admin-names.sql.jinja2
   place-names:
     fields:
@@ -59,7 +59,7 @@ vector_layers:
     geometry_type: [ point ]
     sql:
       - minzoom: 3
-        maxzoom: 9
+        maxzoom: 10
         file: sql/place-names.sql.jinja2
   transportation:
     fields:
@@ -71,9 +71,22 @@ vector_layers:
     geometry_type: [ line ]
     sql:
       - minzoom: 5
-        maxzoom: 9
+        maxzoom: 10
         extent: 2048
         file: sql/transportation-lz.sql.jinja2
+  #transportation-points:
+  aeroways:
+    fields:
+      ref: Reference of the runway
+      aeroway: Type of aeroway
+      bridge: If the aeroway is a bridge
+    description: Linear aeroway features
+    geometry_type: [ line ]
+    sql:
+      - minzoom: 10
+        maxzoom: 10
+        extent: 2048
+        file: sql/aeroway.sql.jinja2
   ferry-routes:
     fields:
       osm_id: OpenStreetMap ID of the feature
@@ -81,7 +94,7 @@ vector_layers:
     geometry_type: [ line ]
     sql:
       - minzoom: 7
-        maxzoom: 9
+        maxzoom: 10
         extent: 2048
         file: sql/ferry-routes.sql.jinja2
   protected-areas:
@@ -92,7 +105,7 @@ vector_layers:
     geometry_type: [ polygon ]
     sql:
       - minzoom: 7
-        maxzoom: 9
+        maxzoom: 10
         extent: 2048
         file: sql/protected-areas.sql.jinja2
   protected-area-names:
@@ -103,16 +116,17 @@ vector_layers:
       way_area: Area of the feature in EPSG:3857
     sql:
       - minzoom: 7
-        maxzoom: 9
+        maxzoom: 10
         extent: 1024
         file: sql/protected-area-names.sql.jinja2
+  #parks:
   landuse:
     fields:
       osm_id: OpenStreetMap ID of the feature
       landuse: Type of landuse
     sql:
       - minzoom: 7
-        maxzoom: 9
+        maxzoom: 10
         extent: 1024
         file: sql/landuse-lz.sql.jinja2
   vegetation:
@@ -120,7 +134,7 @@ vector_layers:
       osm_id: OpenStreetMap ID of the feature
     sql:
       - minzoom: 7
-        maxzoom: 9
+        maxzoom: 10
         extent: 1024
         file: sql/vegetation-lz.sql.jinja2
   vegetation-names:
@@ -128,6 +142,6 @@ vector_layers:
       osm_id: OpenStreetMap ID of the feature
     sql:
       - minzoom: 7
-        maxzoom: 9
+        maxzoom: 10
         extent: 1024
         file: sql/vegetation-names-lz.sql.jinja2

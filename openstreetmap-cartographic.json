@@ -408,6 +408,57 @@
       }
     },
     {
+      "id": "aeroways",
+      "source": "vector",
+      "source-layer": "aeroways",
+      "type": "line",
+      "paint": {
+        "line-color": "#bbbbcc",
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          10,
+          [
+            "match",
+            [
+              "get",
+              "aeroway"
+            ],
+            "runway",
+            2,
+            1
+          ],
+          12,
+          [
+            "match",
+            [
+              "get",
+              "aeroway"
+            ],
+            "runway",
+            6,
+            2
+          ],
+          15,
+          [
+            "match",
+            [
+              "get",
+              "aeroway"
+            ],
+            "runway",
+            24,
+            8
+          ]
+        ]
+      }
+    },
+    {
       "id": "protected-areas-wideoutline",
       "source": "vector",
       "type": "line",
