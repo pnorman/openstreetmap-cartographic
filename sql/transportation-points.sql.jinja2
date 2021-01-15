@@ -1,5 +1,5 @@
 SELECT
-    ST_AsMVTGeom(ST_PointOnSurface(way), {{bbox}}, {{extent}}, {{buffer}}) AS way,
+    ST_AsMVTGeom(ST_PointOnSurface(way), {{unbuffered_bbox}}, {{extent}}, {{buffer}}) AS way,
     osm_id,
     ref,
     highway AS class

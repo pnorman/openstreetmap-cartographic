@@ -1,5 +1,5 @@
 SELECT
-    ST_AsMVTGeom(way, {{bbox}}, {{extent}}, {{buffer}}) AS way
+    ST_AsMVTGeom(way, {{unbuffered_bbox}}, {{extent}}, {{buffer}}) AS way
   FROM planet_osm_line
   WHERE way && {{bbox}}
     AND route = 'ferry'
