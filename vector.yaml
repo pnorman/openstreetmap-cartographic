@@ -122,7 +122,7 @@ vector_layers:
       - minzoom: 7
         maxzoom: 10
         extent: 2048
-        buffer: 10
+        buffer: 16
         file: sql/protected-areas.sql.jinja2
   protected-area-names:
     fields:
