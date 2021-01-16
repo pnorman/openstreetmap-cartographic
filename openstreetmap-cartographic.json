@@ -65,8 +65,6 @@
           "#d6d99f",
           "scrub",
           "#c8d7ab",
-          "mud",
-          "rgba(0,0,0,0)",
           "wetland",
           [
             "match",
@@ -665,12 +663,31 @@
             ],
             "military",
             "#ff5555",
-            "rgba(0,0,0,0)"
+            "red"
           ]
         ],
         "fill-opacity": 0.04
       },
-      "minzoom": 8
+      "minzoom": 8,
+      "filter": [
+        "any",
+        [
+          "==",
+          [
+            "get",
+            "boundary"
+          ],
+          "aboriginal_lands"
+        ],
+        [
+          "==",
+          [
+            "get",
+            "landuse"
+          ],
+          "military"
+        ]
+      ]
     },
     {
       "id": "vegetation-names",
