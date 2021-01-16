@@ -5,6 +5,11 @@ SELECT
     CASE WHEN landuse IN ('forest', 'meadow', 'grass') THEN landuse END AS landuse
   FROM planet_osm_polygon
   WHERE way && {{bbox}}
+{% if zoom <= 7 %}
+    AND ("natural" IN ('wood', 'heath', 'grassland', 'scrub', 'wetland')
+      OR landuse IN ('forest', 'meadow', 'grass'))
+{% else %}
     AND ("natural" IN ('wood', 'heath', 'grassland', 'scrub', 'wetland', 'mud')
       OR landuse IN ('forest', 'meadow', 'grass'))
+{% endif %}
   GROUP BY "natural", tags->'wetland', landuse
