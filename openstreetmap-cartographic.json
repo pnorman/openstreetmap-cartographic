@@ -1,6 +1,6 @@
 {
   "name": "OpenStreetMap Cartographic",
-  "id": "72328c7d-c3ec-45e5-aa71-114b3c400c81",
+  "id": "openstreetmap-cartographic",
   "version": 8,
   "sources": {
     "vector": {
