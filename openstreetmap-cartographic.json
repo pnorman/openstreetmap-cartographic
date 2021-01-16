@@ -18,6 +18,34 @@
       }
     },
     {
+      "id": "leisure",
+      "source": "vector",
+      "source-layer": "leisure",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "match",
+          [
+            "get",
+            "leisure"
+          ],
+          "garden",
+          "#cdebb0",
+          "park",
+          "#c8facc",
+          "ice_rink",
+          "#ddecec",
+          "golf_course",
+          "#b5e3b5",
+          "track",
+          "#aae0cb",
+          "pitch",
+          "#aae0cb",
+          "#d6ffda"
+        ]
+      }
+    },
+    {
       "id": "vegetation",
       "source": "vector",
       "type": "fill",

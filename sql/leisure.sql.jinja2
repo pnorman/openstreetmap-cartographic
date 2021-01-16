@@ -1,0 +1,9 @@
+SELECT
+    ST_AsMVTGeom(way, {{unbuffered_bbox}}, {{extent}}, {{buffer}}) AS way,
+    osm_id,
+    leisure
+  FROM planet_osm_polygon
+  WHERE way && {{bbox}}
+    AND leisure IN ('garden', 'park', 'ice_rink', 'dog_park', 'golf_course',
+                    'sports_centre', 'water_park', 'stadium', 'track', 'pitch')
+    AND way_area > 4 * {{coordinate_area}}

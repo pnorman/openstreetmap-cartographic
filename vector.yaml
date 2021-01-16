@@ -135,7 +135,15 @@ vector_layers:
         maxzoom: 10
         extent: 1024
         file: sql/protected-area-names.sql.jinja2
-  #parks:
+  leisure:
+    fields:
+      osm_id: OpenStreetMap ID of the feature
+      leisure: Type of leisure
+    sql:
+      - minzoom: 9
+        maxzoom: 10
+        extent: 1024
+        file: sql/leisure.sql.jinja2
   landuse:
     fields:
       osm_id: OpenStreetMap ID of the feature
