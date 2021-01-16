@@ -1,0 +1,37 @@
+SELECT
+  ST_AsMVTGeom(way, {{unbuffered_bbox}}, {{extent}}, {{buffer}}) AS way,
+  highway,
+  railway,
+  link
+  FROM (
+SELECT
+    ST_RemoveRepeatedPoints(ST_LineMerge(ST_Collect(way)), 4*{{coordinate_length}}) AS way,
+    CASE WHEN highway IN ('motorway_link', 'trunk_link', 'primary_link', 'secondary_link', 'tertiary_link')
+      THEN substr(highway, 0, length(highway)-4) ELSE highway END AS highway,
+    NULL AS railway,
+    NULLIF(highway IN ('motorway_link', 'trunk_link', 'primary_link', 'secondary_link', 'tertiary_link'), FALSE) AS link,
+    z_order
+  FROM planet_osm_line
+  WHERE way && {{bbox}}
+{% if zoom <= 10 %}
+    AND highway IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link',
+                    'secondary', 'secondary_link', 'tertiary', 'tertiary_link')
+{% else %}
+    AND highway IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link',
+                    'secondary', 'secondary_link', 'tertiary', 'tertiary_link', 'unclassified')
+{% endif %}
+  GROUP BY highway, railway, z_order
+UNION ALL
+SELECT
+    ST_RemoveRepeatedPoints(ST_LineMerge(ST_Collect(way)), 4*{{coordinate_length}}) AS way,
+    NULL AS highway,
+    railway,
+    NULLIF(service NOT IN ('spur', 'siding', 'yard'), false) AS link,
+    z_order
+  FROM planet_osm_roads
+  WHERE way && {{bbox}}
+    AND railway IN ('rail', 'light_rail', 'narrow_gauge')
+    AND (service IS NULL OR service NOT IN ('spur', 'siding', 'yard'))
+  GROUP BY highway, railway, service NOT IN ('spur', 'siding', 'yard'), z_order
+  ) AS unordered_transportation
+  ORDER BY z_order

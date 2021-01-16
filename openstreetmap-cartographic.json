@@ -431,6 +431,34 @@
               0.82,
               0
             ]
+          ],
+          10,
+          [
+            "match",
+            [
+              "get",
+              "highway"
+            ],
+            "motorway",
+            2,
+            "trunk",
+            1.9,
+            "primary",
+            1.8,
+            "secondary",
+            1.1,
+            "tertiary",
+            0.7,
+            [
+              "match",
+              [
+                "get",
+                "railway"
+              ],
+              "rail",
+              0.84,
+              0
+            ]
           ]
         ]
       }

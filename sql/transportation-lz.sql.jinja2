@@ -18,10 +18,8 @@ SELECT
     AND highway IN ('motorway', 'trunk')
 {% elif zoom <= 7 %}
     AND highway IN ('motorway', 'trunk', 'primary')
-{% elif zoom <= 8 %}
-    AND highway IN ('motorway', 'trunk', 'primary', 'secondary')
 {% else %}
-    AND highway IN ('motorway', 'trunk', 'primary', 'secondary', 'tertiary')
+    AND highway IN ('motorway', 'trunk', 'primary', 'secondary')
 {% endif %}
   GROUP BY highway, railway, z_order
 {% if zoom >= 7 %}
@@ -33,7 +31,7 @@ SELECT
     z_order
   FROM planet_osm_roads
   WHERE way && {{bbox}}
-    AND railway = 'rail'
+    AND railway IN ('rail', 'light_rail', 'narrow_gauge')
     AND (service IS NULL OR service NOT IN ('spur', 'siding', 'yard'))
   GROUP BY highway, railway, z_order
 {% endif %}
