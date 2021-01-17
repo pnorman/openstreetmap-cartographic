@@ -191,7 +191,7 @@
       }
     },
     {
-      "id": "transportation-halo",
+      "id": "transportation-lz-halo",
       "source": "vector",
       "source-layer": "transportation",
       "type": "line",
@@ -281,12 +281,34 @@
             "tertiary",
             2.2,
             0
+          ],
+          10,
+          [
+            "match",
+            [
+              "get",
+              "highway"
+            ],
+            "motorway",
+            4,
+            "trunk",
+            3.9,
+            "primary",
+            3.8,
+            "secondary",
+            2.7,
+            "tertiary",
+            2.2,
+            "unclassified",
+            2.2,
+            0
           ]
         ]
-      }
+      },
+      "maxzoom": 11
     },
     {
-      "id": "transportation-fill",
+      "id": "transportation-lz-fill",
       "source": "vector",
       "source-layer": "transportation",
       "type": "line",
@@ -447,6 +469,248 @@
             1.1,
             "tertiary",
             0.7,
+            [
+              "match",
+              [
+                "get",
+                "railway"
+              ],
+              "rail",
+              0.84,
+              0
+            ]
+          ]
+        ]
+      },
+      "maxzoom": 11
+    },
+    {
+      "id": "transportation-casing",
+      "source": "vector",
+      "source-layer": "transportation",
+      "type": "line",
+      "minzoom": 11,
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-color": [
+          "match",
+          [
+            "get",
+            "highway"
+          ],
+          "motorway",
+          "#dc2a67",
+          "trunk",
+          "#c84e2f",
+          "primary",
+          "#a06b00",
+          "secondary",
+          "#707d05",
+          "tertiary",
+          "#8f8f8f",
+          "unclassified",
+          "#bbb",
+          "residential",
+          "#bbb",
+          [
+            "match",
+            [
+              "get",
+              "railway"
+            ],
+            "rail",
+            "#787878",
+            "red"
+          ]
+        ],
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          10,
+          [
+            "match",
+            [
+              "get",
+              "highway"
+            ],
+            "motorway",
+            [
+              "case",
+              [
+                "get",
+                "link"
+              ],
+              1.5,
+              3.5
+            ],
+            "trunk",
+            [
+              "case",
+              [
+                "get",
+                "link"
+              ],
+              1.5,
+              3.5
+            ],
+            "primary",
+            [
+              "case",
+              [
+                "get",
+                "link"
+              ],
+              1.5,
+              3.5
+            ],
+            "secondary",
+            [
+              "case",
+              [
+                "get",
+                "link"
+              ],
+              1.5,
+              3.5
+            ],
+            "tertiary",
+            [
+              "case",
+              [
+                "get",
+                "link"
+              ],
+              1.5,
+              2.5
+            ],
+            [
+              "match",
+              [
+                "get",
+                "railway"
+              ],
+              "rail",
+              0.84,
+              0
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "id": "transportation-fill",
+      "source": "vector",
+      "source-layer": "transportation",
+      "type": "line",
+      "minzoom": 11,
+      "paint": {
+        "line-color": [
+          "match",
+          [
+            "get",
+            "highway"
+          ],
+          "motorway",
+          "#e892a2",
+          "trunk",
+          "#f9b29c",
+          "primary",
+          "#fcd6a4",
+          "secondary",
+          "#f7fabf",
+          "tertiary",
+          "#ffffff",
+          "unclassified",
+          "#bbb",
+          "residential",
+          "#bbb",
+          [
+            "match",
+            [
+              "get",
+              "railway"
+            ],
+            "rail",
+            "#787878",
+            "red"
+          ]
+        ],
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          10,
+          [
+            "match",
+            [
+              "get",
+              "highway"
+            ],
+            "motorway",
+            [
+              "case",
+              [
+                "get",
+                "link"
+              ],
+              0.9,
+              2.5
+            ],
+            "trunk",
+            [
+              "case",
+              [
+                "get",
+                "link"
+              ],
+              0.9,
+              2.5
+            ],
+            "primary",
+            [
+              "case",
+              [
+                "get",
+                "link"
+              ],
+              0.9,
+              2.5
+            ],
+            "secondary",
+            [
+              "case",
+              [
+                "get",
+                "link"
+              ],
+              0.9,
+              2.5
+            ],
+            "tertiary",
+            [
+              "case",
+              [
+                "get",
+                "link"
+              ],
+              0.9,
+              1.5
+            ],
+            "unclassified",
+            0.8,
+            "residential",
+            0.5,
             [
               "match",
               [

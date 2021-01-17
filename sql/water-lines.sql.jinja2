@@ -4,5 +4,11 @@ SELECT
     waterway
   FROM planet_osm_line
   WHERE way && {{bbox}}
+{% if zoom <= 10 %}
     AND waterway = 'river'
+{% elif zoom <= 13 %}
+    AND waterway IN ('river', 'canal')
+{% else %}
+    waterway IN ('river', 'canal', 'stream', 'drain', 'ditch')
+{% endif %}
   GROUP BY waterway, name

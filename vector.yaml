@@ -14,7 +14,7 @@ vector_layers:
     geometry_type: [ polygon ]
     sql:
       - minzoom: 0
-        maxzoom: 10
+        maxzoom: 11
         extent: 2048
         file: sql/water.sql.jinja2
   water-names:
@@ -25,7 +25,7 @@ vector_layers:
     geometry_type: [ point ]
     sql:
       - minzoom: 5
-        maxzoom: 10
+        maxzoom: 11
         extent: 512
         file: sql/water-names.sql.jinja2
   water-lines:
@@ -36,7 +36,7 @@ vector_layers:
     geometry_type: [ linestring ]
     sql:
       - minzoom: 7
-        maxzoom: 10
+        maxzoom: 11
         extent: 2048
         buffer: 2
         file: sql/water-lines.sql.jinja2
@@ -49,7 +49,7 @@ vector_layers:
     geometry_type: [ point ]
     sql:
       - minzoom: 2
-        maxzoom: 10
+        maxzoom: 11
         file: sql/admin-names.sql.jinja2
   place-names:
     fields:
@@ -60,7 +60,7 @@ vector_layers:
     geometry_type: [ point ]
     sql:
       - minzoom: 3
-        maxzoom: 10
+        maxzoom: 11
         file: sql/place-names.sql.jinja2
   transportation:
     fields:
@@ -80,6 +80,11 @@ vector_layers:
         maxzoom: 10
         extent: 2048
         buffer: 2
+        file: sql/transportation-midz.sql.jinja2
+      - minzoom: 11
+        maxzoom: 11
+        extent: 2048
+        buffer: 2
         file: sql/transportation.sql.jinja2
   transportation-points:
     fields:
@@ -91,7 +96,7 @@ vector_layers:
     geometry_type: [ point ]
     sql:
       - minzoom: 10
-        maxzoom: 10
+        maxzoom: 11
         extent: 1024
         file: sql/transportation-points.sql.jinja2
   aeroways:
@@ -103,7 +108,7 @@ vector_layers:
     geometry_type: [ line ]
     sql:
       - minzoom: 10
-        maxzoom: 10
+        maxzoom: 11
         extent: 2048
         buffer: 2
         file: sql/aeroway.sql.jinja2
@@ -114,7 +119,7 @@ vector_layers:
     geometry_type: [ line ]
     sql:
       - minzoom: 7
-        maxzoom: 10
+        maxzoom: 11
         extent: 2048
         file: sql/ferry-routes.sql.jinja2
   protected-areas:
@@ -125,7 +130,7 @@ vector_layers:
     geometry_type: [ polygon ]
     sql:
       - minzoom: 7
-        maxzoom: 10
+        maxzoom: 11
         extent: 2048
         buffer: 16
         file: sql/protected-areas.sql.jinja2
@@ -137,7 +142,7 @@ vector_layers:
       way_area: Area of the feature in EPSG:3857
     sql:
       - minzoom: 7
-        maxzoom: 10
+        maxzoom: 11
         extent: 1024
         file: sql/protected-area-names.sql.jinja2
   leisure:
@@ -146,7 +151,7 @@ vector_layers:
       leisure: Type of leisure
     sql:
       - minzoom: 9
-        maxzoom: 10
+        maxzoom: 11
         extent: 1024
         file: sql/leisure.sql.jinja2
   landuse:
@@ -155,7 +160,7 @@ vector_layers:
       landuse: Type of landuse
     sql:
       - minzoom: 7
-        maxzoom: 10
+        maxzoom: 11
         extent: 1024
         buffer: 1
         file: sql/landuse-lz.sql.jinja2
@@ -164,7 +169,7 @@ vector_layers:
       osm_id: OpenStreetMap ID of the feature
     sql:
       - minzoom: 7
-        maxzoom: 10
+        maxzoom: 11
         extent: 1024
         buffer: 1
         file: sql/vegetation-lz.sql.jinja2
@@ -173,6 +178,6 @@ vector_layers:
       osm_id: OpenStreetMap ID of the feature
     sql:
       - minzoom: 7
-        maxzoom: 10
+        maxzoom: 11
         extent: 1024
         file: sql/vegetation-names-lz.sql.jinja2

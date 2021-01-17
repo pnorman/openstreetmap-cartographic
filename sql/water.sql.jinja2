@@ -1,5 +1,5 @@
 SELECT
-    ST_Union(ST_AsMVTGeom(way, {{unbuffered_bbox}}, {{extent}}, {{buffer}})) AS way,
+    ST_AsMVTGeom(way, {{unbuffered_bbox}}, {{extent}}, {{buffer}}) AS way,
     'ocean' AS water
 {% if zoom <= 8 %}
   FROM simplified_water_polygons

@@ -13,10 +13,8 @@ SELECT
     AND admin_level IN ('2', '4')
 {% elif zoom <= 9 %}
     AND admin_level IN ('2', '4', '5')
-{% elif zoom <= 12 %}
-    AND admin_level IN ('2', '4', '5', '6')
 {% else %}
-    AND admin_level IN ('2', '4', '6', '8')
+    AND admin_level IN ('2', '4', '5', '6')
 {% endif %}
 {% if zoom <= 12 %}
     AND way_area > {{tile_area}}*0.05^2
