@@ -65,6 +65,8 @@
           "#d6d99f",
           "scrub",
           "#c8d7ab",
+          "mud",
+          "rgba(203,177,154,0.3)",
           "wetland",
           [
             "match",
