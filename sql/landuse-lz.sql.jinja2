@@ -3,5 +3,9 @@ SELECT
     landuse
   FROM planet_osm_polygon
   WHERE way && {{bbox}}
+{% if zoom <= 8 %}
     AND landuse IN ('farmland', 'residential', 'commercial', 'retail', 'industrial', 'vineyard', 'orchard')
+{% else %}
+    AND landuse IN ('farmyard', 'farmland', 'residential', 'commercial', 'retail', 'industrial', 'vineyard', 'orchard', 'quarry', 'cemetery', 'allotments', 'railway', 'construction', 'brownfield')
+{% endif %}
   GROUP BY landuse
