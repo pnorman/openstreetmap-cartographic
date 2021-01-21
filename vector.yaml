@@ -112,6 +112,17 @@ vector_layers:
         extent: 2048
         buffer: 2
         file: sql/aeroway.sql.jinja2
+  transit-points:
+    fields:
+      osm_id: OpenStreetMap ID of the feature
+    description: Transit features
+    geometry_type: [ line ]
+    sql:
+      - minzoom: 9
+        maxzoom: 11
+        extent: 2048
+        buffer: 2
+        file: sql/transit-points.sql.jinja2
   ferry-routes:
     fields:
       osm_id: OpenStreetMap ID of the feature

@@ -1,0 +1,31 @@
+SELECT
+    ST_AsMVTGeom(way, {{unbuffered_bbox}}, {{extent}}, {{buffer}}) AS way,
+    osm_id
+  FROM
+    (SELECT
+        ST_PointOnSurface(way) AS way,
+        osm_id,
+        aeroway,
+        access,
+        tags
+      FROM planet_osm_polygon
+      WHERE way && {{bbox}}
+    UNION ALL
+    SELECT
+        way,
+        osm_id,
+        aeroway,
+        access,
+        tags
+      FROM planet_osm_point
+      WHERE way && {{bbox}}
+    ) AS all_points
+  WHERE aeroway = 'aerodrome'
+{% if zoom <= 10 %}
+    AND tags ? 'icao'
+    AND tags ? 'iata'
+    AND access IS DISTINCT FROM 'private'
+{% else %}
+    AND ( tags ? 'icao'
+      OR tags ? 'iata')
+{% endif %}
