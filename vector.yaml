@@ -116,7 +116,7 @@ vector_layers:
     fields:
       osm_id: OpenStreetMap ID of the feature
     description: Transit features
-    geometry_type: [ line ]
+    geometry_type: [ point ]
     sql:
       - minzoom: 9
         maxzoom: 11

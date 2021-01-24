@@ -9,7 +9,8 @@ SELECT
         access,
         tags
       FROM planet_osm_polygon
-      WHERE way && {{bbox}}
+      WHERE way && {{bbox}} -- needed because unnamed points are desired
+        AND ST_PointOnSurface(way) && {{bbox}}
     UNION ALL
     SELECT
         way,

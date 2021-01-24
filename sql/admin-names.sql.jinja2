@@ -4,7 +4,7 @@ SELECT
     name,
     admin_level::integer
   FROM planet_osm_polygon
-  WHERE way && {{bbox}}
+  WHERE ST_PointOnSurface(way) && {{bbox}}
     AND boundary = 'administrative'
     AND name IS NOT NULL
 {% if zoom <= 3 %}

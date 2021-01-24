@@ -6,7 +6,7 @@ SELECT
     CASE WHEN landuse IN ('forest', 'meadow', 'grass') THEN landuse END AS landuse,
     name
   FROM planet_osm_polygon
-  WHERE way && {{bbox}}
+  WHERE ST_PointOnSurface(way) && {{bbox}}
     AND name IS NOT NULL
     AND ("natural" IN ('wood', 'heath', 'grassland', 'scrub', 'wetland', 'mud')
       OR landuse IN ('forest', 'meadow', 'grass'))

@@ -9,7 +9,7 @@ SELECT
       ELSE water
     END AS water
   FROM planet_osm_polygon
-  WHERE way && {{bbox}}
+  WHERE ST_PointOnSurface(way) && {{bbox}}
     AND name IS NOT NULL
     AND (waterway = 'dock'
         OR landuse IN ('reservoir', 'basin')

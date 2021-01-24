@@ -6,8 +6,8 @@ SELECT
     capital
 FROM (
   SELECT
-      DISTINCT ON (ST_SnapToGrid(ST_PointOnSurface(way), {{tile_length}}/16))
-      ST_PointOnSurface(way) AS way,
+      DISTINCT ON (ST_SnapToGrid(way, {{tile_length}}/16))
+      way,
       osm_id,
       name,
       place,
@@ -48,7 +48,7 @@ FROM (
       AND place IN ('city', 'town', 'village', 'hamlet')
   {% endif %}
     ORDER BY -- Ordering for deduplication
-      ST_SnapToGrid(ST_PointOnSurface(way), {{tile_length}}/16),
+      ST_SnapToGrid(way, {{tile_length}}/16),
       capital DESC,
       CASE place
         WHEN 'city' THEN 0
