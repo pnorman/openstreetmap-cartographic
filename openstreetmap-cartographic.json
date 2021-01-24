@@ -571,6 +571,8 @@
           "#bbb",
           "residential",
           "#bbb",
+          "living_street",
+          "#bbb",
           [
             "match",
             [
@@ -590,7 +592,7 @@
           [
             "zoom"
           ],
-          10,
+          11,
           [
             "match",
             [
@@ -657,6 +659,80 @@
               0.84,
               0
             ]
+          ],
+          12,
+          [
+            "match",
+            [
+              "get",
+              "highway"
+            ],
+            "motorway",
+            [
+              "case",
+              [
+                "get",
+                "link"
+              ],
+              4,
+              6
+            ],
+            "trunk",
+            [
+              "case",
+              [
+                "get",
+                "link"
+              ],
+              4,
+              6
+            ],
+            "primary",
+            [
+              "case",
+              [
+                "get",
+                "link"
+              ],
+              4,
+              5
+            ],
+            "secondary",
+            [
+              "case",
+              [
+                "get",
+                "link"
+              ],
+              4,
+              5
+            ],
+            "tertiary",
+            [
+              "case",
+              [
+                "get",
+                "link"
+              ],
+              3,
+              4
+            ],
+            "unclassified",
+            2.5,
+            "residential",
+            2.5,
+            "living_street",
+            2,
+            [
+              "match",
+              [
+                "get",
+                "railway"
+              ],
+              "rail",
+              0.84,
+              0
+            ]
           ]
         ]
       }
@@ -669,34 +745,76 @@
       "minzoom": 11,
       "paint": {
         "line-color": [
-          "match",
+          "interpolate",
           [
-            "get",
-            "highway"
+            "linear"
           ],
-          "motorway",
-          "#e892a2",
-          "trunk",
-          "#f9b29c",
-          "primary",
-          "#fcd6a4",
-          "secondary",
-          "#f7fabf",
-          "tertiary",
-          "#ffffff",
-          "unclassified",
-          "#bbb",
-          "residential",
-          "#bbb",
+          [
+            "zoom"
+          ],
+          11,
           [
             "match",
             [
               "get",
-              "railway"
+              "highway"
             ],
-            "rail",
-            "#787878",
-            "red"
+            "motorway",
+            "#e892a2",
+            "trunk",
+            "#f9b29c",
+            "primary",
+            "#fcd6a4",
+            "secondary",
+            "#f7fabf",
+            "tertiary",
+            "#ffffff",
+            "unclassified",
+            "#bbb",
+            "residential",
+            "#bbb",
+            [
+              "match",
+              [
+                "get",
+                "railway"
+              ],
+              "rail",
+              "#787878",
+              "red"
+            ]
+          ],
+          12,
+          [
+            "match",
+            [
+              "get",
+              "highway"
+            ],
+            "motorway",
+            "#e892a2",
+            "trunk",
+            "#f9b29c",
+            "primary",
+            "#fcd6a4",
+            "secondary",
+            "#f7fabf",
+            "tertiary",
+            "#ffffff",
+            "unclassified",
+            "#fff",
+            "residential",
+            "#fff",
+            [
+              "match",
+              [
+                "get",
+                "railway"
+              ],
+              "rail",
+              "#787878",
+              "red"
+            ]
           ]
         ],
         "line-width": [
@@ -707,7 +825,7 @@
           [
             "zoom"
           ],
-          10,
+          11,
           [
             "match",
             [
@@ -768,6 +886,78 @@
             0.8,
             "residential",
             0.5,
+            [
+              "match",
+              [
+                "get",
+                "railway"
+              ],
+              "rail",
+              0.84,
+              0
+            ]
+          ],
+          12,
+          [
+            "match",
+            [
+              "get",
+              "highway"
+            ],
+            "motorway",
+            [
+              "case",
+              [
+                "get",
+                "link"
+              ],
+              3,
+              5
+            ],
+            "trunk",
+            [
+              "case",
+              [
+                "get",
+                "link"
+              ],
+              3,
+              5
+            ],
+            "primary",
+            [
+              "case",
+              [
+                "get",
+                "link"
+              ],
+              3,
+              4
+            ],
+            "secondary",
+            [
+              "case",
+              [
+                "get",
+                "link"
+              ],
+              3.3,
+              4.3
+            ],
+            "tertiary",
+            [
+              "case",
+              [
+                "get",
+                "link"
+              ],
+              2,
+              3
+            ],
+            "unclassified",
+            1.5,
+            "residential",
+            1.5,
             [
               "match",
               [

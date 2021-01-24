@@ -2,6 +2,9 @@ SELECT
   ST_AsMVTGeom(way, {{unbuffered_bbox}}, {{extent}}, {{buffer}}) AS way,
   highway,
   railway,
+  {% if zoom >= 12 %}
+  bridge,
+  {% endif %}
   link
   FROM (
 SELECT
@@ -10,26 +13,51 @@ SELECT
       THEN substr(highway, 0, length(highway)-4) ELSE highway END AS highway,
     NULL AS railway,
     highway IN ('motorway_link', 'trunk_link', 'primary_link', 'secondary_link', 'tertiary_link') AS link,
+    {% if zoom >= 12 %}
+    NULLIF(bridge IN ('yes', 'boardwalk', 'cantilever', 'covered', 'low_water_crossing', 'movable', 'trestle', 'viaduct'), false) AS bridge,
+    {% endif %}
     COALESCE(layer,0) AS layernotnull,
     z_order
   FROM planet_osm_line
   WHERE way && {{bbox}}
-    AND (highway IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link',
+    AND (
+{% if zoom <= 11 %}
+      highway IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link',
                     'secondary', 'secondary_link', 'tertiary', 'tertiary_link', 'unclassified', 'residential', 'raceway')
-    OR highway = 'construction' AND construction IN ('motorway', 'trunk', 'primary', 'secondary'))
+      OR highway = 'construction' AND construction IN ('motorway', 'trunk', 'primary', 'secondary')
+{% else %}
+      highway IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link',
+                    'secondary', 'secondary_link', 'tertiary', 'tertiary_link', 'unclassified', 'residential', 'raceway',
+                    'living_street', 'secondary', 'secondary_link', 'tertiary', 'bridleway', 'footway', 'cycleway', 'path')
+      OR highway = 'construction' AND construction IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary',
+        'primary_link', 'secondary', 'secondary_link', 'tertiary')
+{% endif %}
+    )
+{% if zoom <= 11 %}
   GROUP BY highway, link, layer, z_order
+{% else %}
+  GROUP BY highway, link, layer, bridge IN ('yes', 'boardwalk', 'cantilever', 'covered', 'low_water_crossing', 'movable', 'trestle', 'viaduct'), z_order
+{% endif %}
 UNION ALL
 SELECT
     ST_RemoveRepeatedPoints(ST_LineMerge(ST_Collect(way)), 4*{{coordinate_length}}) AS way,
     NULL AS highway,
     railway,
     service NOT IN ('spur', 'siding', 'yard') AS link,
+    {% if zoom >= 12 %}
+    NULLIF(bridge IN ('yes', 'boardwalk', 'cantilever', 'covered', 'low_water_crossing', 'movable', 'trestle', 'viaduct'), false) AS bridge,
+    {% endif %}
     COALESCE(layer,0) AS layernotnull,
     z_order
   FROM planet_osm_roads
   WHERE way && {{bbox}}
     AND railway IN ('rail', 'light_rail', 'narrow_gauge', 'tram', 'subway', 'preserved')
     AND (service IS NULL OR service NOT IN ('spur', 'siding', 'yard'))
+
+{% if zoom <= 11 %}
   GROUP BY railway, service NOT IN ('spur', 'siding', 'yard'), layer, z_order
+{% else %}
+  GROUP BY railway, service NOT IN ('spur', 'siding', 'yard'), layer, bridge IN ('yes', 'boardwalk', 'cantilever', 'covered', 'low_water_crossing', 'movable', 'trestle', 'viaduct'), z_order
+{% endif %}
   ) AS unordered_transportation
   ORDER BY layernotnull ASC, z_order

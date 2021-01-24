@@ -4,6 +4,11 @@ SELECT
     leisure
   FROM planet_osm_polygon
   WHERE way && {{bbox}}
+{% if zoom <= 12 %}
     AND leisure IN ('garden', 'park', 'ice_rink', 'dog_park', 'golf_course',
                     'sports_centre', 'water_park', 'stadium', 'track', 'pitch')
+{% else %}
+    AND leisure IN ('garden', 'park', 'ice_rink', 'dog_park', 'golf_course',
+                    'sports_centre', 'water_park', 'stadium', 'track', 'pitch', 'playground', 'fitness_station')
+{% endif %}
     AND way_area > 4 * {{coordinate_area}}

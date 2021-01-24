@@ -9,7 +9,7 @@ SELECT
     CASE WHEN highway IN ('motorway_link', 'trunk_link', 'primary_link', 'secondary_link', 'tertiary_link')
       THEN substr(highway, 0, length(highway)-4) ELSE highway END AS highway,
     NULL AS railway,
-    NULLIF(highway IN ('motorway_link', 'trunk_link', 'primary_link', 'secondary_link', 'tertiary_link'), FALSE) AS link,
+    NULLIF(highway IN ('motorway_link', 'trunk_link', 'primary_link', 'secondary_link', 'tertiary_link'), false) AS link,
     z_order
   FROM planet_osm_line
   WHERE way && {{bbox}}
